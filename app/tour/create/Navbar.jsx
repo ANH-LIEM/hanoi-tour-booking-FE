@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'ツアー', href: '/home', current: true },
+  { name: 'ツアー', href: '/tour', current: true },
   { name: '勧めのフード', href: '#', current: false },
   { name: '勧めの観光地', href: '#', current: false },
 ]
