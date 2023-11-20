@@ -12,76 +12,31 @@ export default function EditForm() {
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-            <div className="col-span-full">
-              <label htmlFor="tour-name" className="block text-sm font-medium leading-6 text-gray-900">
-              ツアー名
+          <div className="col-span-full">
+              <label htmlFor="place-name" className="block text-sm font-medium leading-6 text-gray-900">
+              観光地
               </label>
               <div className="mt-2">
                 <input
                   type="text"
-                  name="tour-name"
-                  id="tour-name"
-                  autoComplete="tour-name"
+                  name="place-name"
+                  id="place-name"
+                  autoComplete="place-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div className="col-span-full">
-              <label htmlFor="cost" className="block text-sm font-medium leading-6 text-gray-900">
-              料金
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="cost"
-                  id="cost"
-                  autoComplete="cost"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="time" className="block text-sm font-medium leading-6 text-gray-900">
-              時間
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="time"
-                  id="time"
-                  autoComplete="time"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="places" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="destination" className="block text-sm font-medium leading-6 text-gray-900">
               場所
               </label>
               <div className="mt-2">
                 <input
                   type="text"
-                  name="places"
-                  id="places"
-                  autoComplete="places"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="number-of-people" className="block text-sm font-medium leading-6 text-gray-900">
-              人数
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="number-of-people"
-                  id="number-of-people"
-                  autoComplete="number-of-people"
+                  name="destination"
+                  id="destination"
+                  autoComplete="destination"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -90,7 +45,7 @@ export default function EditForm() {
 
             <div className="col-span-full">
               <label htmlFor="detail" className="block text-sm font-medium leading-6 text-gray-900">
-              詳しいスケジュール
+              詳細な説明
               </label>
               <div className="mt-2">
                 <textarea
@@ -105,9 +60,11 @@ export default function EditForm() {
 
            
 
+           
+
             <div className="col-span-full">
               <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-              ツアーの動画・画像
+              観光地の動画・画像
               </label>
 
             {/* Upload anh 1 */}
@@ -187,18 +144,18 @@ export default function EditForm() {
           </button>
         </Link>
 
-        <Link href="/tour">
+        <Link href="/place">
           <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
           キャンセル
           </button>
         </Link>
 
-        <Link href="/tour">
+        <Link href="/place">
           <button
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            作成
+            保存
           </button>
         </Link>
       </div>
