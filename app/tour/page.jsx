@@ -19,7 +19,7 @@ export default function Home() {
         <>
             <Navbar />
             <Banner />
-            <Link href="/createtour">
+            <Link href="/tour/create">
                 <Button />
             </Link>
 
