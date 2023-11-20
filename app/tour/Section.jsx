@@ -10,7 +10,7 @@ function Section(props) {
             <section className="bg-gray-80 inline-block float-left">
                 <div className="bg-gray-80 container mx-auto px-4 py-4 sm:py-6 sm:px-2 lg:py-8 lg:px-4 inline-block ml-16 hover:shadow-lg ">
                     <div className="flex-1">
-                        <Link href="/tour/detail">
+                        <Link href="/tour/edit">
                             <div className="relative h-48 w-64 overflow-hidden rounded-lg">
                                 <img
                                     alt="Party"
