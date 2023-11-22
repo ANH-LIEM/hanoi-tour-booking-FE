@@ -87,7 +87,7 @@ const Detail = () => {
 
                 <div className="border border-gray-300 p-4 rounded-md mx-auto center mt-6">
                     <label htmlFor="tour-schedule" className="block text-sm font-medium leading-6 text-gray-900">
-                        <b className="text-lg">スケジュール</b>
+                        <b className="text-lg">詳しいスケジュール</b>
                     </label>
                     <br />
                     <div className="tour-schedule-section">
