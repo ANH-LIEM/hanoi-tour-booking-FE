@@ -28,9 +28,9 @@ const Detail = () => {
     };
 
     const comments = [
-        { user: 'フェイカー', comment: 'LPLスレイヤー' },
-        { user: 'クリスティアーノ・ロナウド', comment: '41歳は人生の頂点' },
-        { user: 'ライオネル・メッシ', comment: 'GOAT!!!' },
+        { user: 'フェイカー', comment: 'LPLスレイヤー', time: '2023-11-22 12:30:00', avatar: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Faker_2020_interview.jpg' },
+        { user: 'クリスティアーノ・ロナウド', comment: '41歳は人生の頂点', time: '2023-11-22 13:45:00', avatar: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Cristiano_Ronaldo_2018_%28cropped%29.jpg' },
+        { user: 'ライオネル・メッシ', comment: 'GOAT!!!', time: '2023-11-22 14:20:00', avatar: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Messi_vs_Nigeria_2018.jpg' },
     ];
 
     const handleShowMore = () => {
@@ -87,22 +87,20 @@ const Detail = () => {
                     <label htmlFor="tour-comments" className="block text-sm font-medium leading-6 text-gray-900">
                         <b className="text-lg">コメント</b>
                     </label>
-                    <table className="table-auto w-full">
-                        <thead>
-                            <tr>
-                                <th className="px-4 py-2">ユーザー</th>
-                                <th className="px-4 py-2">コメント</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {comments.map((comment, index) => (
-                                <tr key={index}>
-                                    <td className="border px-4 py-2">{comment.user}</td>
-                                    <td className="border px-4 py-2">{comment.comment}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <div className="tour-comments-section">
+                        {comments.map((comment, index) => (
+                            <div key={index} className="flex items-start border-b border-gray-300 py-4">
+                                <div className="flex-shrink-0">
+                                    <img src={comment.avatar} alt={`Avatar ${comment.user}`} className="w-12 h-12 rounded-full" />
+                                </div>
+                                <div className="ml-4">
+                                    <span className="font-bold text-sm ml-2">@{comment.user}</span>
+                                    <span className="text-gray-500 text-sm ml-2">{comment.time}</span>
+                                    <p className="text-gray-800 ml-2">{comment.comment}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </form >
