@@ -1,12 +1,14 @@
 import React from 'react';
 import Navbar from '../Navbar';
+import Detail from './Detail'
 
-const TourDetail = () => {
+const PlaceDetail = () => {
   return (
     <>
-        <Navbar />
+      <Navbar />
+      <Detail />
     </>
   )
 }
 
-export default TourDetail
+export default PlaceDetail
