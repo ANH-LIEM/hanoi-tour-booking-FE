@@ -58,7 +58,7 @@ const TourEdit = () => {
   return (
     <>
       <Navbar />
-      <EditForm submitForm={handleSubmitForm} delete={deleteItem}/>
+      <EditForm submitForm={handleSubmitForm} deleteItem={deleteItem}/>
     </>
   )
 }

@@ -1,9 +1,12 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Link from 'next/link';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import SelectBox from './SelectBox'
 
 export default function CreateForm(props) {
+
+  
 
   const [formValue, setFormValue] = useState({
     name: '',
@@ -14,6 +17,8 @@ export default function CreateForm(props) {
     description: '',
     url: null,
   })
+
+  
 
 
   return (
@@ -156,6 +161,8 @@ export default function CreateForm(props) {
                 />
               </div>
             </div>
+
+            <SelectBox /> 
 
 
             <div className="col-span-full">
