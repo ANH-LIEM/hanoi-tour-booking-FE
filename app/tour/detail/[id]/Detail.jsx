@@ -1,7 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Detail = ({ id }) => {
+
+  const fetchDataTour = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/tour/${id}`);
+      const jsonData = await response.json();
+      console.log(jsonData)
+      //console.log(transformedLocations)
+      setTour(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const [tour, setTour] = useState([]);
+
+  const fetchDataLocation = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/locationsOnTour/${id}`);
+      const jsonData = await response.json();
+      console.log(jsonData)
+      //console.log(transformedLocations)
+      setLocations(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    fetchDataTour()
+    fetchDataLocation()
+  }, [])
+
   const [showMore, setShowMore] = useState(false);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -69,7 +103,7 @@ const Detail = ({ id }) => {
             htmlFor="tour-name"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            <b className="text-lg">ツアー名 {id}</b>
+            <b className="text-lg">{tour.name}</b>
           </label>
           <div className="image-section relative overflow-x-auto">
             <button
@@ -107,20 +141,26 @@ const Detail = ({ id }) => {
           <div className="tour-info-section">
             <ul>
               <li>
-                <b>数料</b> {tourInfo.fee}
+                <b>数料</b> {tour.price}
               </li>
               <li>
-                <b>人数</b> {tourInfo.numberOfPeople}
+                <b>人数</b> {tour.maxCapacity}
               </li>
               <li>
-                <b>時間</b> {tourInfo.time}
+                <b>時間</b> {tour.due}
               </li>
               <li>
                 <b>場所</b> {tourInfo.location}
               </li>
               <li>
-                <b>状態</b> {tourInfo.status}
+                <b>状態</b> {tour.status}
               </li>
+            </ul>
+            <ul>
+            <b>場所</b>
+              {locations.map(location => (
+                <li key={location.id}>{location.name}</li>
+              ))}
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
               <button onClick={() => alert("予約が成功しました。")}>
@@ -142,10 +182,9 @@ const Detail = ({ id }) => {
           <br />
           <div className="tour-schedule-section">
             <p>
-              [1]
-              ハノイを出発し、西湖、文廟、タンロン王城などの有名な場所を巡ります。
+              {tour.description}
             </p>
-            <p>
+            {/* <p>
               [2]
               ユニークなハノイ料理を提供する人気レストランでランチをお楽しみください。
             </p>
@@ -157,7 +196,7 @@ const Detail = ({ id }) => {
               [4]
               旅の終わりは、あらゆる年齢層の観光客が楽しめるゲームやエンターテイメントがたくさんあるヴィンワンダーズ
               ハノイで終わります。
-            </p>
+            </p> */}
           </div>
         </div>
 
