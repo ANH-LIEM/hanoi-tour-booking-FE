@@ -1,3 +1,5 @@
+'use client';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import Navbar from './Navbar';
 import Banner from './Banner';
@@ -12,7 +14,25 @@ export default function Home() {
     //call server get data
     //save data to state
 
-    let tours
+    const [places, setPlaces] = useState([])
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/locations');
+            const jsonData = await response.json();
+            console.log(jsonData)
+            if(jsonData==null){
+                setPlaces([])
+            }
+            setPlaces(jsonData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData()
+    }, [])
 
     return (
         <>
@@ -27,7 +47,7 @@ export default function Home() {
                     <OptionBox />
                 </div>
                 <div id="right" className="w-4/5">
-                    <Tours tours={tours} />
+                    <Tours places={places} />
                 </div>
             </div>
 
