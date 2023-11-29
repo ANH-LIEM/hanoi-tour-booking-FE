@@ -1,8 +1,18 @@
 'use client';
 import Link from 'next/link';
+import React, { useState } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 
-export default function CreateForm() {
+export default function CreateForm(props) {
+
+  const [formValue, setFormValue] = useState({
+    name: '',
+    location: '',
+    rating: '',
+    description: '',
+    url: null,
+  })
+
   return (
     <form className="max-w-2xl mx-auto mt-4">
       <div className="space-y-12">
@@ -14,10 +24,17 @@ export default function CreateForm() {
 
             <div className="col-span-full">
               <label htmlFor="place-name" className="block text-sm font-medium leading-6 text-gray-900">
-              観光地
+                観光地
               </label>
               <div className="mt-2">
                 <input
+                  value={formValue.name}
+                  onChange={(e) => {
+                    setFormValue({
+                      ...formValue,
+                      name: e.target.value
+                    })
+                  }}
                   type="text"
                   name="place-name"
                   id="place-name"
@@ -28,15 +45,44 @@ export default function CreateForm() {
             </div>
 
             <div className="col-span-full">
-              <label htmlFor="destination" className="block text-sm font-medium leading-6 text-gray-900">
-              場所
+              <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
+                Location
               </label>
               <div className="mt-2">
                 <input
+                value={formValue.location}
+                onChange={(e) => {
+                  setFormValue({
+                    ...formValue,
+                    location: e.target.value
+                  })
+                }}
                   type="text"
-                  name="destination"
-                  id="destination"
-                  autoComplete="destination"
+                  name="location"
+                  id="location"
+                  autoComplete="location"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div className="col-span-full">
+              <label htmlFor="rating" className="block text-sm font-medium leading-6 text-gray-900">
+                Rating
+              </label>
+              <div className="mt-2">
+                <input
+                value={formValue.rating}
+                onChange={(e) => {
+                  setFormValue({
+                    ...formValue,
+                    rating: e.target.value
+                  })
+                }}
+                  type="text"
+                  name="rating"
+                  id="rating"
+                  autoComplete="rating"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -44,13 +90,20 @@ export default function CreateForm() {
 
 
             <div className="col-span-full">
-              <label htmlFor="detail" className="block text-sm font-medium leading-6 text-gray-900">
-              詳細な説明
+              <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
+                詳細な説明
               </label>
               <div className="mt-2">
                 <textarea
-                  id="detail"
-                  name="detail"
+                value={formValue.description}
+                onChange={(e) => {
+                  setFormValue({
+                    ...formValue,
+                    description: e.target.value
+                  })
+                }}
+                  id="description"
+                  name="description"
                   rows={3}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   defaultValue={''}
@@ -58,11 +111,11 @@ export default function CreateForm() {
               </div>
             </div>
 
-           
+
 
             <div className="col-span-full">
               <label htmlFor="food-photo" className="block text-sm font-medium leading-6 text-gray-900">
-              観光地の動画・画像
+                観光地の動画・画像
               </label>
               <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div className="text-center">
@@ -84,24 +137,25 @@ export default function CreateForm() {
           </div>
         </div>
 
-        
+
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link href="/place">
           <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-          キャンセル
+            キャンセル
           </button>
         </Link>
 
-        <Link href="/place">
+        
           <button
+          onClick={(e) => props.submitForm(e, formValue)}
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             作成
           </button>
-        </Link>
+        
       </div>
     </form>
   )
