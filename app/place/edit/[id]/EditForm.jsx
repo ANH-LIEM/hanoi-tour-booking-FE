@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 
 
-export default function EditForm({props}) {
+export default function EditForm(props) {
 
   const url = window.location.href;
     const parts = url.split('/');
@@ -32,6 +32,7 @@ export default function EditForm({props}) {
     rating: '',
     description: '',
     url: null,
+    image1: null
   })
 
   return (
@@ -267,7 +268,7 @@ export default function EditForm({props}) {
         </Link>
 
         <button
-          onClick={(e) => submitForm(e, formValue,id)}
+          onClick={(e) => props.submitForm(e, formValue,id)}
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           作成
