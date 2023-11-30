@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar'
 import CreateForm from './CreateForm'
-
+import Cookies from 'js-cookie';
 
 
 
@@ -11,6 +11,7 @@ const CreateTour = () => {
 
 
   const handleSubmitForm = (e, formValue) => {
+    const token = Cookies.get('accessToken'); // Lấy token từ cookie
     e.preventDefault();
     console.log("Submit form", formValue)
     // after call api
@@ -18,6 +19,7 @@ const CreateTour = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
         // Add any additional headers if needed
       },
       body: JSON.stringify(formValue),

@@ -3,10 +3,13 @@
 import React, { useState } from 'react';
 import Navbar from '../../Navbar';
 import EditForm from './EditForm';
+import Cookies from 'js-cookie';
 
 const TourEdit = () => {
+  //const token = Cookies.get('accessToken');
 
   const handleSubmitForm = (e, formValue,id) => {
+    const token = Cookies.get('accessToken');
     e.preventDefault();
     console.log("Submit form", formValue)
     // after call api
@@ -15,6 +18,7 @@ const TourEdit = () => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
         // Add any additional headers if needed
       },
       body: JSON.stringify(formValue),
@@ -38,6 +42,7 @@ const TourEdit = () => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        //Authorization: `Bearer ${token}`,
         // Add any additional headers if needed
       },
       // You can include a request body if necessary

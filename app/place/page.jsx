@@ -8,6 +8,7 @@ import Tours from './Tours';
 import Button from './Button';
 import Link from 'next/link';
 import Footer from './Footer';
+import Cookies from 'js-cookie';
 
 export default function Home() {
 
@@ -18,7 +19,17 @@ export default function Home() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:8080/locations');
+
+            const token = Cookies.get('accessToken'); // Lấy token từ cookie
+
+            const headers = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            };
+            const response = await fetch('http://localhost:8080/locations', {
+                method: 'GET',
+                headers,
+            });
             const jsonData = await response.json();
             console.log(jsonData)
             if(jsonData==null){

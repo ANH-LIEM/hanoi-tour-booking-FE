@@ -1,12 +1,22 @@
 'use client'
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import Cookies from "js-cookie";
 
 export default function MultiSelect() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("http://localhost:8080/locations");
+            const token = Cookies.get('accessToken'); // Lấy token từ cookie
+
+            const headers = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            };
+            const response = await fetch("http://localhost:8080/locations", {
+                method: 'GET',
+                headers,
+            });
             const jsonData = await response.json();
 
 
@@ -17,22 +27,22 @@ export default function MultiSelect() {
             }));
             //console.log(jsonData)
             console.log(transformedLocations)
-             //console.log(transformedLocations)
+            //console.log(transformedLocations)
 
             setLocations(transformedLocations);
-            
+
             //return transformedLocations
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
-    
+
     const [locations, setLocations] = useState([]);
-    
+
     useEffect(() => {
         fetchData()
     }, [])
-    
+
     return (
         <div className="container mx-auto  w-96">
             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1.5">

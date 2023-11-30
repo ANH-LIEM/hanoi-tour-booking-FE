@@ -2,10 +2,12 @@
 import React from 'react'
 import Navbar from '../Navbar'
 import CreateForm from './CreateForm'
+import Cookies from 'js-cookie';
 
 const CreateLocation = () => {
 
   const handleSubmitForm = (e, formValue) => {
+    const token = Cookies.get('accessToken'); // Lấy token từ cookie
     e.preventDefault();
     console.log("Submit form", formValue)
     // after call api
@@ -13,13 +15,14 @@ const CreateLocation = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
         // Add any additional headers if needed
       },
       body: JSON.stringify(formValue),
     })
       .then(response => response.json())
       .then(data => {
-        
+
         window.location.href = '/place'
         // Handle the response data as needed
       })
@@ -32,8 +35,8 @@ const CreateLocation = () => {
 
   return (
     <>
-        <Navbar />
-        <CreateForm submitForm={handleSubmitForm}/>
+      <Navbar />
+      <CreateForm submitForm={handleSubmitForm} />
     </>
   )
 }

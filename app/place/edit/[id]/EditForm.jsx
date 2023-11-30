@@ -3,18 +3,28 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import Cookies from 'js-cookie';
 
 
 export default function EditForm(props) {
 
   const url = window.location.href;
-    const parts = url.split('/');
-    const id = parts[parts.length - 1];
+  const parts = url.split('/');
+  const id = parts[parts.length - 1];
   //const { id } = router.query;
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/locations/${id}`);
+      const token = Cookies.get('accessToken'); // Lấy token từ cookie
+
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/locations/${id}`, {
+        method: 'GET',
+        headers,
+      });
       const jsonData = await response.json();
       setFormValue(jsonData)
     } catch (error) {
@@ -46,7 +56,7 @@ export default function EditForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="place-name" className="block text-sm font-medium leading-6 text-gray-900">
-              観光地
+                観光地
               </label>
               <div className="mt-2">
                 <input
@@ -68,7 +78,7 @@ export default function EditForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-              Location
+                Location
               </label>
               <div className="mt-2">
                 <input
@@ -90,7 +100,7 @@ export default function EditForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="rating" className="block text-sm font-medium leading-6 text-gray-900">
-              Rating
+                Rating
               </label>
               <div className="mt-2">
                 <input
@@ -110,7 +120,7 @@ export default function EditForm(props) {
               </div>
             </div>
 
-        
+
 
             <div className="col-span-full">
               <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
@@ -251,15 +261,15 @@ export default function EditForm(props) {
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        
-          <button
-          onClick={(e) => delete(e, formValue,id)}
-            
-            className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-          >
-            Delete
-          </button>
-        
+
+        <button
+          onClick={(e) => delete (e, formValue, id)}
+
+          className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        >
+          Delete
+        </button>
+
 
         <Link href="/place">
           <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
@@ -268,7 +278,7 @@ export default function EditForm(props) {
         </Link>
 
         <button
-          onClick={(e) => props.submitForm(e, formValue,id)}
+          onClick={(e) => props.submitForm(e, formValue, id)}
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           作成
