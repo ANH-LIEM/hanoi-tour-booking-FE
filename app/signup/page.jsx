@@ -1,15 +1,44 @@
+'use client'
 import React from 'react'
+import { useState } from 'react'
 
 const SignUp = () => {
+    const [formValue, setFormValue] = useState({
+        email: '',
+        password: '',
+        phone: '',
+        nationality: '',
+        name: ''
+    })
+
+    const handleSubmitForm = (e, formValue) => {
+        e.preventDefault();
+        console.log("Submit form", formValue)
+        // after call api
+        fetch('http://localhost:8080/api/v1/auth/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any additional headers if needed
+          },
+          body: JSON.stringify(formValue),
+        })
+          .then(response => response.json())
+          .then(data => {
+            //Cookies.set('accessToken', data.token, { expires: 1 });
+            //console.log(data)
+            window.location.href = '/'
+            // Handle the response data as needed
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            // Handle errors
+          });
+        // redirect here 
+      }
+
     return (
         <>
-            {/*
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
-*/}
-
             <section className="bg-white">
                 <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
                     <section
@@ -83,13 +112,20 @@ const SignUp = () => {
                             </div>
 
                             <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-                            <div className="col-span-6">
+                                <div className="col-span-6">
                                     <label htmlFor="Fullname" className="block text-sm font-medium text-gray-700">
                                         Full Name
                                     </label>
 
                                     <input
                                         // type="fullname"
+                                        value={formValue.name}
+                                        onChange={(e) => {
+                                            setFormValue({
+                                                ...formValue,
+                                                name: e.target.value
+                                            })
+                                        }}
                                         id="Fullname"
                                         name="fullname"
                                         className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
@@ -102,6 +138,13 @@ const SignUp = () => {
                                     </label>
 
                                     <input
+                                        value={formValue.email}
+                                        onChange={(e) => {
+                                            setFormValue({
+                                                ...formValue,
+                                                email: e.target.value
+                                            })
+                                        }}
                                         type="email"
                                         id="Email"
                                         name="email"
@@ -115,6 +158,13 @@ const SignUp = () => {
                                     </label>
 
                                     <input
+                                        value={formValue.phone}
+                                        onChange={(e) => {
+                                            setFormValue({
+                                                ...formValue,
+                                                phone: e.target.value
+                                            })
+                                        }}
                                         //type="phone"
                                         id="Phone"
                                         name="phone"
@@ -128,13 +178,20 @@ const SignUp = () => {
                                     </label>
 
                                     <input
+                                        value={formValue.nationality}
+                                        onChange={(e) => {
+                                            setFormValue({
+                                                ...formValue,
+                                                nationality: e.target.value
+                                            })
+                                        }}
                                         //type="phone"
                                         id="Nationality"
                                         name="Nationality"
                                         className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                                     />
                                 </div>
-                                
+
 
                                 <div className="col-span-6 sm:col-span-3">
                                     <label
@@ -145,6 +202,13 @@ const SignUp = () => {
                                     </label>
 
                                     <input
+                                        value={formValue.password}
+                                        onChange={(e) => {
+                                            setFormValue({
+                                                ...formValue,
+                                                password: e.target.value
+                                            })
+                                        }}
                                         type="password"
                                         id="Password"
                                         name="password"
@@ -188,7 +252,7 @@ const SignUp = () => {
                                     <p className="text-sm text-gray-500">
                                         By creating an account, you agree to our
                                         <a href="#" className="text-gray-700 underline">
-                                             terms and conditions
+                                            terms and conditions
                                         </a>
                                         and
                                         <a href="#" className="text-gray-700 underline"> privacy policy</a>.
@@ -197,6 +261,7 @@ const SignUp = () => {
 
                                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                                     <button
+                                    onClick={(e) => handleSubmitForm(e, formValue)}
                                         className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                                     >
                                         Create an account
