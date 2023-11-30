@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-
+import Cookies from 'js-cookie';
 
 export default function EditForm(props) {
 
@@ -14,7 +14,15 @@ export default function EditForm(props) {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/tour/${id}`);
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+    };
+      const response = await fetch(`http://localhost:8080/tour/${id}`, {
+        method: 'GET',
+        headers,
+    });
       const jsonData = await response.json();
       setFormValue(jsonData)
     } catch (error) {

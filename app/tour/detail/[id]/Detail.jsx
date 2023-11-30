@@ -1,11 +1,20 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Detail = ({ id }) => {
 
   const fetchDataTour = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/tour/${id}`);
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/tour/${id}`, {
+        method: 'GET',
+        headers,
+      });
       const jsonData = await response.json();
       console.log(jsonData)
       //console.log(transformedLocations)
@@ -19,7 +28,15 @@ const Detail = ({ id }) => {
 
   const fetchDataLocation = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/locationsOnTour/${id}`);
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/locationsOnTour/${id}`, {
+        method: 'GET',
+        headers,
+      });
       const jsonData = await response.json();
       console.log(jsonData)
       //console.log(transformedLocations)
@@ -157,7 +174,7 @@ const Detail = ({ id }) => {
               </li>
             </ul>
             <ul>
-            <b>場所</b>
+              <b>場所</b>
               {locations.map(location => (
                 <li key={location.id}>{location.name}</li>
               ))}

@@ -1,11 +1,21 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Detail = ({ id }) => {
 
   const fetchDataLocation = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/locations/${id}`);
+      const token = Cookies.get('accessToken'); // Lấy token từ cookie
+
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/locations/${id}`, {
+        method: 'GET',
+        headers,
+      });
       const jsonData = await response.json();
       console.log(jsonData)
       //console.log(transformedLocations)
@@ -17,7 +27,7 @@ const Detail = ({ id }) => {
 
   const [location, setLocation] = useState([]);
 
-  
+
 
   useEffect(() => {
     //fetchDataTour()
@@ -138,8 +148,8 @@ const Detail = ({ id }) => {
                 <b className="mr-9">Rating</b> {location.rating}
               </li>
             </ul>
-            
-            
+
+
           </div>
         </div>
 
