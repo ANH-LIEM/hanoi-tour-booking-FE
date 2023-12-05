@@ -7,6 +7,7 @@ import SelectBox from './SelectBox'
 export default function CreateForm(props) {
 
   
+  
 
   const [formValue, setFormValue] = useState({
     name: '',
@@ -15,6 +16,7 @@ export default function CreateForm(props) {
     places: '',
     max_capacity: '',
     description: '',
+    locations: '',
     url: null,
   })
 
@@ -161,7 +163,7 @@ export default function CreateForm(props) {
                 />
               </div>
             </div>
-
+                   
             <SelectBox /> 
 
 

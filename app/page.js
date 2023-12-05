@@ -23,7 +23,12 @@ export default function Home() {
       },
       body: JSON.stringify(formValue),
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
         Cookies.set('accessToken', data.token, { expires: 1 });
         //console.log(data)
@@ -32,6 +37,7 @@ export default function Home() {
       })
       .catch(error => {
         console.error('Error:', error);
+        window.alert('Sign-in failed. Please check your credentials.');
         // Handle errors
       });
     // redirect here 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import Cookies from "js-cookie";
 
-export default function MultiSelect({ onSelectedValuesChange }) {
+export default function MultiSelect() {
 
     const fetchData = async () => {
         try {
@@ -13,7 +13,7 @@ export default function MultiSelect({ onSelectedValuesChange }) {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             };
-            const response = await fetch("http://localhost:8080/location", {
+            const response = await fetch("http://localhost:8080/food", {
                 method: 'GET',
                 headers,
             });
@@ -26,10 +26,10 @@ export default function MultiSelect({ onSelectedValuesChange }) {
                 label: name,
             }));
             //console.log(jsonData)
-            //console.log(transformedLocations)
+            console.log(transformedLocations)
             //console.log(transformedLocations)
 
-            setLocations(transformedLocations);
+            setFoods(transformedLocations);
 
             //return transformedLocations
         } catch (error) {
@@ -37,14 +37,7 @@ export default function MultiSelect({ onSelectedValuesChange }) {
         }
     };
 
-    const [locations, setLocations] = useState([]);
-    const [selectedLocations, setSelectedLocations] = useState([]);
-
-    const handleSelectChange = (selectedOptions) => {
-        setSelectedLocations(selectedOptions);
-        const selectedValues = selectedOptions.map(location => location.value);
-        onSelectedValuesChange(selectedValues);
-    };
+    const [foods, setFoods] = useState([]);
 
     useEffect(() => {
         fetchData()
@@ -58,7 +51,7 @@ export default function MultiSelect({ onSelectedValuesChange }) {
             <Select
                 isMulti
                 name="locations"
-                options={locations}
+                options={foods}
                 className="lg:w-1/2 w-full"
                 classNamePrefix="select"
             />

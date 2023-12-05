@@ -24,7 +24,29 @@ const Detail = ({ id }) => {
     }
   };
 
+  const peopleOnTour = async () => {
+    try {
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/tour/people/${id}`, {
+        method: 'GET',
+        headers,
+      });
+      const jsonData =await response.json();
+      setPeople(jsonData);
+      //console.log(jsonData)
+      //console.log(transformedLocations)
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const [tour, setTour] = useState([]);
+  const [people, setPeople] = useState([]);
 
   const fetchDataLocation = async () => {
     try {
@@ -46,11 +68,42 @@ const Detail = ({ id }) => {
     }
   };
 
+  const contract = async (e) => {
+    const token = Cookies.get('accessToken'); // Lấy token từ cookie
+    e.preventDefault();
+    //console.log("Submit form", formValue)
+    // after call api
+    fetch('http://localhost:8080/contract', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        // Add any additional headers if needed
+      },
+      body: JSON.stringify({
+        "userId": "1",
+        "tourId": `${id}`,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+      
+        window.location.href = `/tour/detail/${id}`
+        // Handle the response data as needed
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle errors
+      });
+    // redirect here
+  }
+
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     fetchDataTour()
     fetchDataLocation()
+    peopleOnTour()
   }, [])
 
   const [showMore, setShowMore] = useState(false);
@@ -172,15 +225,20 @@ const Detail = ({ id }) => {
               <li>
                 <b>状態</b> {tour.status}
               </li>
-            </ul>
+            <li>
             <ul>
               <b>場所</b>
               {locations.map(location => (
                 <li key={location.id}>{location.name}</li>
               ))}
             </ul>
+            </li>
+            <li>
+                <b>people</b> {people}
+              </li>
+            </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
-              <button onClick={() => alert("予約が成功しました。")}>
+              <button onClick={(e) => contract(e)}>
                 <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
                   <b>予約</b>
                 </div>

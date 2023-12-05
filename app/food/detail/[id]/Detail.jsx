@@ -4,33 +4,52 @@ import Cookies from "js-cookie";
 
 const Detail = ({ id }) => {
 
-  const fetchDataLocation = async () => {
+  const fetchDataTour = async () => {
     try {
-      const token = Cookies.get('accessToken'); // Lấy token từ cookie
-
+      const token = Cookies.get('accessToken');
       const headers = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       };
-      const response = await fetch(`http://localhost:8080/location/${id}`, {
+      const response = await fetch(`http://localhost:8080/food/${id}`, {
         method: 'GET',
         headers,
       });
       const jsonData = await response.json();
       console.log(jsonData)
       //console.log(transformedLocations)
-      setLocation(jsonData);
+      setFood(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const [location, setLocation] = useState([]);
+  const [food, setFood] = useState([]);
 
+  const fetchDataLocation = async () => {
+    try {
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/foodOnLocation/${id}`, {
+        method: 'GET',
+        headers,
+      });
+      const jsonData = await response.json();
+      console.log(jsonData)
+      //console.log(transformedLocations)
+      setLocations(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    //fetchDataTour()
+    fetchDataTour()
     fetchDataLocation()
   }, [])
 
@@ -101,7 +120,7 @@ const Detail = ({ id }) => {
             htmlFor="tour-name"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            <b className="text-lg">{location.name}</b>
+            <b className="text-lg">{food.name}</b>
           </label>
           <div className="image-section relative overflow-x-auto">
             <button
@@ -139,17 +158,26 @@ const Detail = ({ id }) => {
           <div className="tour-info-section">
             <ul>
               <li>
-                <b className="mr-10">観光地</b> {location.name}
+                <b>数料</b> {food.price}
               </li>
               <li>
-                <b className="mr-5">Location</b> {location.location}
+                <b>評価</b> {food.rating}
               </li>
-              <li>
-                <b className="mr-9">Rating</b> {location.rating}
-              </li>
+              
             </ul>
-
-
+            {/* <ul>
+              <b>場所</b>
+              {locations.map(location => (
+                <li key={location.id}>{location.name}</li>
+              ))}
+            </ul> */}
+            {/* <div className="flex items-center justify-center p-2 rounded-md mt-4">
+              <button onClick={() => alert("予約が成功しました。")}>
+                <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
+                  <b>予約</b>
+                </div>
+              </button>
+            </div> */}
           </div>
         </div>
 
@@ -158,12 +186,12 @@ const Detail = ({ id }) => {
             htmlFor="tour-schedule"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            <b className="text-lg">デスクリプション</b>
+            <b className="text-lg">詳しいスケジュール</b>
           </label>
           <br />
           <div className="tour-schedule-section">
             <p>
-              {location.description}
+              {food.description}
             </p>
             {/* <p>
               [2]

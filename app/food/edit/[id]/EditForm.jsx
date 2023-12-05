@@ -19,7 +19,7 @@ export default function EditForm(props) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
     };
-      const response = await fetch(`http://localhost:8080/tour/${id}`, {
+      const response = await fetch(`http://localhost:8080/food/${id}`, {
         method: 'GET',
         headers,
     });
@@ -37,11 +37,9 @@ export default function EditForm(props) {
   const [formValue, setFormValue] = useState({
     name: '',
     price: '',
-    due: '',
-    places: '',
-    max_capacity: '',
+    rating: '',
     description: '',
-    url:'',
+    url:null,
     image1: null,
   })
 
@@ -100,15 +98,15 @@ export default function EditForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="time" className="block text-sm font-medium leading-6 text-gray-900">
-                時間
+              評価
               </label>
               <div className="mt-2">
                 <input
-                  value={formValue.due}
+                  value={formValue.rating}
                   onChange={(e) => {
                     setFormValue({
                       ...formValue,
-                      due: e.target.value
+                      rating: e.target.value
                     })
                   }}
                   type="text"
@@ -120,49 +118,7 @@ export default function EditForm(props) {
               </div>
             </div>
 
-            <div className="col-span-full">
-              <label htmlFor="places" className="block text-sm font-medium leading-6 text-gray-900">
-                場所
-              </label>
-              <div className="mt-2">
-                <input
-                  value={formValue.places}
-                  onChange={(e) => {
-                    setFormValue({
-                      ...formValue,
-                      places: e.target.value
-                    })
-                  }}
-                  type="text"
-                  name="places"
-                  id="places"
-                  autoComplete="places"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="number-of-people" className="block text-sm font-medium leading-6 text-gray-900">
-                人数
-              </label>
-              <div className="mt-2">
-                <input
-                  value={formValue.max_capacity}
-                  onChange={(e) => {
-                    setFormValue({
-                      ...formValue,
-                      max_capacity: e.target.value
-                    })
-                  }}
-                  type="text"
-                  name="number-of-people"
-                  id="number-of-people"
-                  autoComplete="number-of-people"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+            
 
 
             <div className="col-span-full">
