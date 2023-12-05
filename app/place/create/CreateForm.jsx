@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import SelectBox from './SelectBox'
 
 export default function CreateForm(props) {
 
@@ -87,6 +88,8 @@ export default function CreateForm(props) {
                 />
               </div>
             </div>
+
+            <SelectBox /> 
 
 
             <div className="col-span-full">
