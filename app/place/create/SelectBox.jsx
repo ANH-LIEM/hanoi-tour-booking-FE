@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import Cookies from "js-cookie";
 
-export default function MultiSelect() {
+export default function MultiSelect({setFormFoods}) {
 
     const fetchData = async () => {
         try {
@@ -50,10 +50,13 @@ export default function MultiSelect() {
             </label>
             <Select
                 isMulti
-                name="locations"
+                name="foods"
                 options={foods}
                 className="lg:w-1/2 w-full"
                 classNamePrefix="select"
+                onChange={(foods) => {
+                    setFormFoods(foods.map((food) => food.value))
+                }}
             />
         </div>
     );
