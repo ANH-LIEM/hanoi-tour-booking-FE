@@ -47,6 +47,35 @@ const Detail = ({ id }) => {
 
   const [tour, setTour] = useState([]);
   const [people, setPeople] = useState([]);
+  
+
+  const contractState = async (e) => {
+    try {
+      e.preventDefault();
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/tour/book/${id}`, {
+        method: 'GET',
+        headers,
+      });
+      
+      const jsonData = await response.json();
+      //console.log(jsonData)
+      if(jsonData == true){
+        window.alert("abc")
+      }else{
+        contract(e)
+      }
+
+      //console.log(jsonData)
+      //console.log(transformedLocations)      
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const fetchDataLocation = async () => {
     try {
@@ -81,20 +110,9 @@ const Detail = ({ id }) => {
         // Add any additional headers if needed
       },
       body: JSON.stringify({
-        "userId": "1",
         "tourId": `${id}`,
       }),
-    })
-      .then(response => response.json())
-      .then(data => {
-      
-        window.location.href = `/tour/detail/${id}`
-        // Handle the response data as needed
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Handle errors
-      });
+    }).then(() =>peopleOnTour());
     // redirect here
   }
 
@@ -105,6 +123,10 @@ const Detail = ({ id }) => {
     fetchDataLocation()
     peopleOnTour()
   }, [])
+
+  // useEffect(() => {
+  //   peopleOnTour()
+  // }, [isRegistered])
 
   const [showMore, setShowMore] = useState(false);
 
@@ -164,6 +186,8 @@ const Detail = ({ id }) => {
   const handleShowMore = () => {
     setShowMore(true);
   };
+
+  
 
   return (
     <form className="max-w-2xl mx-auto mt-4">
@@ -238,7 +262,9 @@ const Detail = ({ id }) => {
               </li>
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
-              <button onClick={(e) => contract(e)}>
+              <button onClick={(e) => {
+                 contractState(e);
+              }}>
                 <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
                   <b>予約</b>
                 </div>
