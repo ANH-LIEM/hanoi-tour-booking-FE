@@ -26,11 +26,32 @@ const Detail = ({ id }) => {
   };
 
   const [location, setLocation] = useState([]);
+  const [foods, setFoods] = useState([]);
 
+  const fetchDataFood = async () => {
+    try {
+      const token = Cookies.get('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/foodInLocation/${id}`, {
+        method: 'GET',
+        headers,
+      });
+      const jsonData = await response.json();
+      console.log(jsonData)
+      //console.log(transformedLocations)
+      setFoods(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
 
   useEffect(() => {
     //fetchDataTour()
+    fetchDataFood()
     fetchDataLocation()
   }, [])
 
@@ -147,6 +168,12 @@ const Detail = ({ id }) => {
               <li>
                 <b className="mr-9">Rating</b> {location.rating}
               </li>
+            </ul>
+            <ul>
+              <b>food</b>
+              {foods.map(food => (
+                <li key={food.id}>{food.name}</li>
+              ))}
             </ul>
 
 

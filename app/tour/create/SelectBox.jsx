@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import Cookies from "js-cookie";
 
-export default function MultiSelect({ onSelectedValuesChange }) {
+export default function MultiSelect({ setFormLocations }) {
 
     const fetchData = async () => {
         try {
@@ -38,13 +38,7 @@ export default function MultiSelect({ onSelectedValuesChange }) {
     };
 
     const [locations, setLocations] = useState([]);
-    const [selectedLocations, setSelectedLocations] = useState([]);
-
-    const handleSelectChange = (selectedOptions) => {
-        setSelectedLocations(selectedOptions);
-        const selectedValues = selectedOptions.map(location => location.value);
-        onSelectedValuesChange(selectedValues);
-    };
+   
 
     useEffect(() => {
         fetchData()
@@ -61,6 +55,9 @@ export default function MultiSelect({ onSelectedValuesChange }) {
                 options={locations}
                 className="lg:w-1/2 w-full"
                 classNamePrefix="select"
+                onChange={(locations) => {
+                    setFormLocations(locations.map((location) => location.value))
+                }}
             />
         </div>
     );

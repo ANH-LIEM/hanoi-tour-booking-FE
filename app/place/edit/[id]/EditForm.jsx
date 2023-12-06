@@ -21,7 +21,7 @@ export default function EditForm(props) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       };
-      const response = await fetch(`http://localhost:8080/locations/${id}`, {
+      const response = await fetch(`http://localhost:8080/location/${id}`, {
         method: 'GET',
         headers,
       });

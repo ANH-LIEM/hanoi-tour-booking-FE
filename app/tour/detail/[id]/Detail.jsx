@@ -234,7 +234,7 @@ const Detail = ({ id }) => {
             </ul>
             </li>
             <li>
-                <b>people</b> {people}
+                <b>注文する人数</b> {people}
               </li>
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">

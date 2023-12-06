@@ -9,10 +9,18 @@ export default function CreateForm(props) {
   const [formValue, setFormValue] = useState({
     name: '',
     location: '',
+    foods: [],
     rating: '',
     description: '',
     url: null,
   })
+
+  const setFoods = (foods) => {
+    setFormValue({
+      ...formValue,
+      foods: foods
+    })
+  }
 
   return (
     <form className="max-w-2xl mx-auto mt-4">
@@ -89,7 +97,7 @@ export default function CreateForm(props) {
               </div>
             </div>
 
-            <SelectBox /> 
+            <SelectBox setFormFoods={setFoods} /> 
 
 
             <div className="col-span-full">
