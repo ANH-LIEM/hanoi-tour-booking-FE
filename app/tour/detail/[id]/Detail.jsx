@@ -1,22 +1,22 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const Detail = ({ id }) => {
-
   const fetchDataTour = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
       const response = await fetch(`http://localhost:8080/tour/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers,
       });
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       //console.log(transformedLocations)
       setTour(jsonData);
     } catch (error) {
@@ -26,20 +26,19 @@ const Detail = ({ id }) => {
 
   const peopleOnTour = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
       const response = await fetch(`http://localhost:8080/tour/people/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers,
       });
-      const jsonData =await response.json();
+      const jsonData = await response.json();
       setPeople(jsonData);
       //console.log(jsonData)
       //console.log(transformedLocations)
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -50,17 +49,20 @@ const Detail = ({ id }) => {
 
   const fetchDataLocation = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-      const response = await fetch(`http://localhost:8080/locationsOnTour/${id}`, {
-        method: 'GET',
-        headers,
-      });
+      const response = await fetch(
+        `http://localhost:8080/locationsOnTour/${id}`,
+        {
+          method: "GET",
+          headers,
+        }
+      );
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       //console.log(transformedLocations)
       setLocations(jsonData);
     } catch (error) {
@@ -69,42 +71,41 @@ const Detail = ({ id }) => {
   };
 
   const contract = async (e) => {
-    const token = Cookies.get('accessToken'); // Lấy token từ cookie
+    const token = Cookies.get("accessToken"); // Lấy token từ cookie
     e.preventDefault();
     //console.log("Submit form", formValue)
     // after call api
-    fetch('http://localhost:8080/contract', {
-      method: 'POST',
+    fetch("http://localhost:8080/contract", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         // Add any additional headers if needed
       },
       body: JSON.stringify({
-        "userId": "1",
-        "tourId": `${id}`,
+        userId: "1",
+        tourId: `${id}`,
       }),
     })
-      .then(response => response.json())
-      .then(data => {
-      
-        window.location.href = `/tour/detail/${id}`
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.href = `/tour/detail/${id}`;
         // Handle the response data as needed
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
         // Handle errors
       });
     // redirect here
-  }
+  };
 
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    fetchDataTour()
-    fetchDataLocation()
-    peopleOnTour()
-  }, [])
+    fetchDataTour();
+    fetchDataLocation();
+    peopleOnTour();
+  }, []);
 
   const [showMore, setShowMore] = useState(false);
 
@@ -225,15 +226,21 @@ const Detail = ({ id }) => {
               <li>
                 <b>状態</b> {tour.status}
               </li>
-            <li>
-            <ul>
-              <b>場所</b>
-              {locations.map(location => (
-                <li key={location.id}>{location.name}</li>
-              ))}
-            </ul>
-            </li>
-            <li>
+              <li>
+                <ul>
+                  <b>場所</b>
+                  {locations.map((location) => (
+                    <Link
+                      className="text-blue-500"
+                      key={location.id}
+                      href={`/place/detail//${location.id}`}
+                    >
+                      <li>{location.name}</li>
+                    </Link>
+                  ))}
+                </ul>
+              </li>
+              <li>
                 <b>注文する人数</b> {people}
               </li>
             </ul>
@@ -256,9 +263,7 @@ const Detail = ({ id }) => {
           </label>
           <br />
           <div className="tour-schedule-section">
-            <p>
-              {tour.description}
-            </p>
+            <p>{tour.description}</p>
             {/* <p>
               [2]
               ユニークなハノイ料理を提供する人気レストランでランチをお楽しみください。
