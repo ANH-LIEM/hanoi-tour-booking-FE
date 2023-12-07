@@ -8,7 +8,7 @@ function Tours(props) {
     return (
         <div>
             {props.places.map((item, index) => (
-                <Section key={index} title={item.name} desc={item.description} url={item.url} id={item.id}/>
+                <Section key={index} title={item.name} desc={item.description} url={item.location} id={item.id}/>
             ))}
         </div>
     );

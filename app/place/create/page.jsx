@@ -11,7 +11,7 @@ const CreateLocation = () => {
     e.preventDefault();
     console.log("Submit form", formValue)
     // after call api
-    fetch('http://localhost:8080/locations', {
+    fetch('http://localhost:8080/location', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

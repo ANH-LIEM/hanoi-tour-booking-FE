@@ -139,8 +139,8 @@ const Detail = ({ id }) => {
             </button>
             <div className="flex">
               <img
-                src={images[currentIndex]}
-                alt={`Tour Image ${currentIndex + 1}`}
+                src={food.url}
+                //alt={`Tour Image ${currentIndex + 1}`}
                 className="mr-2"
               />
             </div>

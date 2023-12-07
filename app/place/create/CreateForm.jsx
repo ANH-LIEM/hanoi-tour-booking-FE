@@ -9,18 +9,18 @@ export default function CreateForm(props) {
   const [formValue, setFormValue] = useState({
     name: '',
     location: '',
-    foods: [],
+    // foods: [],
     rating: '',
     description: '',
-    url: null,
+    
   })
 
-  const setFoods = (foods) => {
-    setFormValue({
-      ...formValue,
-      foods: foods
-    })
-  }
+  // const setFoods = (foods) => {
+  //   setFormValue({
+  //     ...formValue,
+  //     foods: foods
+  //   })
+  // }
 
   return (
     <form className="max-w-2xl mx-auto mt-4">
@@ -53,27 +53,7 @@ export default function CreateForm(props) {
               </div>
             </div>
 
-            <div className="col-span-full">
-              <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-                Location
-              </label>
-              <div className="mt-2">
-                <input
-                value={formValue.location}
-                onChange={(e) => {
-                  setFormValue({
-                    ...formValue,
-                    location: e.target.value
-                  })
-                }}
-                  type="text"
-                  name="location"
-                  id="location"
-                  autoComplete="location"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+            
 
             <div className="col-span-full">
               <label htmlFor="rating" className="block text-sm font-medium leading-6 text-gray-900">
@@ -97,7 +77,29 @@ export default function CreateForm(props) {
               </div>
             </div>
 
-            <SelectBox setFormFoods={setFoods} /> 
+            <div className="col-span-full">
+              <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
+                url
+              </label>
+              <div className="mt-2">
+                <input
+                value={formValue.location}
+                onChange={(e) => {
+                  setFormValue({
+                    ...formValue,
+                    location: e.target.value
+                  })
+                }}
+                  type="text"
+                  name="location"
+                  id="location"
+                  autoComplete="location"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            {/* <SelectBox />  */}
 
 
             <div className="col-span-full">

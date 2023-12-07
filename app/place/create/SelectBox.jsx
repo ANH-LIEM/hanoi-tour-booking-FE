@@ -54,9 +54,9 @@ export default function MultiSelect({setFormFoods}) {
                 options={foods}
                 className="lg:w-1/2 w-full"
                 classNamePrefix="select"
-                onChange={(foods) => {
-                    setFormFoods(foods.map((food) => food.value))
-                }}
+                // onChange={(foods) => {
+                //     setFormFoods(foods.map((food) => food.value))
+                // }}
             />
         </div>
     );
