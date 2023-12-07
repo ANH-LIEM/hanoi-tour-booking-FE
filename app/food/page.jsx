@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Banner from './Banner';
 import OptionBox from './OptionBox';
-import PriceInput from './PriceInput';
+import Filter from './Filter';
 import Tours from './Tours';
 import Button from './Button';
 import Link from 'next/link';
@@ -12,7 +12,11 @@ import Cookies from 'js-cookie';
 
 export default function Home() {
 
-    const [tours, setTours] = useState([])
+    const [foods, setFoods] = useState([])
+
+    const updateFoods = (newData) => {
+        setFoods(newData);
+    };
 
     const fetchData = async () => {
         try {
@@ -32,9 +36,9 @@ export default function Home() {
             const jsonData = await response.json();
             console.log(jsonData)
             if (jsonData == null) {
-                setTours([])
+                setFoods([])
             }
-            setTours(jsonData);
+            setFoods(jsonData);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -54,11 +58,11 @@ export default function Home() {
 
             <div id="main" className="flex">
                 <div id="left" className="w-1/5">
-                    <PriceInput />
+                    <Filter updateFoods={updateFoods} />
                     <OptionBox />
                 </div>
                 <div id="right" className="w-4/5">
-                    <Tours tours={tours} />
+                    <Tours foods={foods} />
                 </div>
             </div>
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Banner from './Banner';
 import OptionBox from './OptionBox';
-import PriceInput from './PriceInput';
+import Filter from './Filter';
 import Tours from './Tours';
 import Button from './Button';
 import Link from 'next/link';
@@ -13,6 +13,10 @@ import Cookies from 'js-cookie';
 export default function Home() {
 
     const [tours, setTours] = useState([])
+
+    const updateTours = (newData) => {
+        setTours(newData);
+    };
 
     const fetchData = async () => {
         try {
@@ -54,7 +58,7 @@ export default function Home() {
 
             <div id="main" className="flex">
                 <div id="left" className="w-1/5">
-                    <PriceInput />
+                    <Filter updateTours={updateTours} />
                     <OptionBox />
                 </div>
                 <div id="right" className="w-4/5">

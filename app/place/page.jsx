@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Banner from './Banner';
 import OptionBox from './OptionBox';
+import Filter from './Filter';
 import Tours from './Tours';
 import Button from './Button';
 import Link from 'next/link';
@@ -16,6 +17,10 @@ export default function Home() {
     //save data to state
 
     const [places, setPlaces] = useState([])
+
+    const updateLocations = (newData) => {
+        setPlaces(newData);
+    };
 
     const fetchData = async () => {
         try {
@@ -32,7 +37,7 @@ export default function Home() {
             });
             const jsonData = await response.json();
             console.log(jsonData)
-            if(jsonData==null){
+            if (jsonData == null) {
                 setPlaces([])
             }
             setPlaces(jsonData);
@@ -55,6 +60,7 @@ export default function Home() {
 
             <div id="main" className="flex">
                 <div id="left" className="w-1/5">
+                    <Filter updateLocations={updateLocations} />
                     <OptionBox />
                 </div>
                 <div id="right" className="w-4/5">
