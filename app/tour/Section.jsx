@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function Section(props) {
 
-    const {id,title,desc,url} = props
+    const {id,title,desc,url,price} = props
 
     return (
         <>
@@ -23,6 +23,7 @@ function Section(props) {
                                 <p className="mt-1 text-gray-600 line-clamp-2 h-16 overflow-hidden" >
                                     {desc}
                                 </p>
+                                
                             </div>
                         </Link>
                     </div>

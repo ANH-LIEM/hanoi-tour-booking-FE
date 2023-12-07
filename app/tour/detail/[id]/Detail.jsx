@@ -1,22 +1,22 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const Detail = ({ id }) => {
-
   const fetchDataTour = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
       const response = await fetch(`http://localhost:8080/tour/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers,
       });
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       //console.log(transformedLocations)
       setTour(jsonData);
     } catch (error) {
@@ -26,20 +26,19 @@ const Detail = ({ id }) => {
 
   const peopleOnTour = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
       const response = await fetch(`http://localhost:8080/tour/people/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers,
       });
-      const jsonData =await response.json();
+      const jsonData = await response.json();
       setPeople(jsonData);
       //console.log(jsonData)
       //console.log(transformedLocations)
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -47,7 +46,8 @@ const Detail = ({ id }) => {
 
   const [tour, setTour] = useState([]);
   const [people, setPeople] = useState([]);
-  
+
+  const [isBook, setIsBook] = useState(false);
 
   const contractState = async (e) => {
     try {
@@ -61,12 +61,13 @@ const Detail = ({ id }) => {
         method: 'GET',
         headers,
       });
-      
+
       const jsonData = await response.json();
+      setIsBook(jsonData);
       //console.log(jsonData)
-      if(jsonData == true){
-        window.alert("abc")
-      }else{
+      if (jsonData == true) {
+        window.alert("予約しました。")
+      } else {
         contract(e)
       }
 
@@ -79,17 +80,20 @@ const Detail = ({ id }) => {
 
   const fetchDataLocation = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-      const response = await fetch(`http://localhost:8080/locationsOnTour/${id}`, {
-        method: 'GET',
-        headers,
-      });
+      const response = await fetch(
+        `http://localhost:8080/locationsOnTour/${id}`,
+        {
+          method: "GET",
+          headers,
+        }
+      );
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       //console.log(transformedLocations)
       setLocations(jsonData);
     } catch (error) {
@@ -98,31 +102,35 @@ const Detail = ({ id }) => {
   };
 
   const contract = async (e) => {
-    const token = Cookies.get('accessToken'); // Lấy token từ cookie
+    const token = Cookies.get("accessToken"); // Lấy token từ cookie
     e.preventDefault();
     //console.log("Submit form", formValue)
     // after call api
-    fetch('http://localhost:8080/contract', {
-      method: 'POST',
+    fetch("http://localhost:8080/contract", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         // Add any additional headers if needed
       },
       body: JSON.stringify({
         "tourId": `${id}`,
       }),
-    }).then(() =>peopleOnTour());
+    }).then(() => peopleOnTour());
+
+
+
+
     // redirect here
-  }
+  };
 
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    fetchDataTour()
-    fetchDataLocation()
-    peopleOnTour()
-  }, [])
+    fetchDataTour();
+    fetchDataLocation();
+    peopleOnTour();
+  }, []);
 
   // useEffect(() => {
   //   peopleOnTour()
@@ -187,7 +195,7 @@ const Detail = ({ id }) => {
     setShowMore(true);
   };
 
-  
+
 
   return (
     <form className="max-w-2xl mx-auto mt-4">
@@ -249,21 +257,27 @@ const Detail = ({ id }) => {
               <li>
                 <b>状態</b> {tour.status}
               </li>
-            <li>
-            <ul>
-              <b>場所</b>
-              {locations.map(location => (
-                <li key={location.id}>{location.name}</li>
-              ))}
-            </ul>
-            </li>
-            <li>
+              <li>
+                <ul>
+                  <b>場所</b>
+                  {locations.map((location) => (
+                    <Link
+                      className="text-blue-500"
+                      key={location.id}
+                      href={`/place/detail//${location.id}`}
+                    >
+                      <li>{location.name}</li>
+                    </Link>
+                  ))}
+                </ul>
+              </li>
+              <li>
                 <b>注文する人数</b> {people}
               </li>
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
               <button onClick={(e) => {
-                 contractState(e);
+                contractState(e);
               }}>
                 <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
                   <b>予約</b>
@@ -282,9 +296,7 @@ const Detail = ({ id }) => {
           </label>
           <br />
           <div className="tour-schedule-section">
-            <p>
-              {tour.description}
-            </p>
+            <p>{tour.description}</p>
             {/* <p>
               [2]
               ユニークなハノイ料理を提供する人気レストランでランチをお楽しみください。
@@ -337,6 +349,6 @@ const Detail = ({ id }) => {
       </div>
     </form>
   );
-};
+}
 
 export default Detail;

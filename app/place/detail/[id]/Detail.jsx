@@ -1,23 +1,23 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const Detail = ({ id }) => {
-
   const fetchDataLocation = async () => {
     try {
-      const token = Cookies.get('accessToken'); // Lấy token từ cookie
+      const token = Cookies.get("accessToken"); // Lấy token từ cookie
 
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
       const response = await fetch(`http://localhost:8080/location/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers,
       });
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       //console.log(transformedLocations)
       setLocation(jsonData);
     } catch (error) {
@@ -30,17 +30,20 @@ const Detail = ({ id }) => {
 
   const fetchDataFood = async () => {
     try {
-      const token = Cookies.get('accessToken');
+      const token = Cookies.get("accessToken");
       const headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-      const response = await fetch(`http://localhost:8080/foodInLocation/${id}`, {
-        method: 'GET',
-        headers,
-      });
+      const response = await fetch(
+        `http://localhost:8080/food/foodInLocation/${id}`,
+        {
+          method: "GET",
+          headers,
+        }
+      );
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       //console.log(transformedLocations)
       setFoods(jsonData);
     } catch (error) {
@@ -48,12 +51,11 @@ const Detail = ({ id }) => {
     }
   };
 
-
   useEffect(() => {
     //fetchDataTour()
-    fetchDataFood()
-    fetchDataLocation()
-  }, [])
+    fetchDataFood();
+    fetchDataLocation();
+  }, []);
 
   const [showMore, setShowMore] = useState(false);
 
@@ -141,8 +143,8 @@ const Detail = ({ id }) => {
             </button>
             <div className="flex">
               <img
-                src={images[currentIndex]}
-                alt={`Tour Image ${currentIndex + 1}`}
+                src={location.location}
+                //alt={`Tour Image ${currentIndex + 1}`}
                 className="mr-2"
               />
             </div>
@@ -170,13 +172,17 @@ const Detail = ({ id }) => {
               </li>
             </ul>
             <ul>
-              <b>food</b>
-              {foods.map(food => (
-                <li key={food.id}>{food.name}</li>
+              <b>お勧めのフード</b>
+              {foods.map((food) => (
+                <Link
+                  className="text-blue-500 hover:text-blue-300"
+                  key={food.id}
+                  href={`/food/detail/${food.id}`}
+                >
+                  <li>{food.name}</li>
+                </Link>
               ))}
             </ul>
-
-
           </div>
         </div>
 
@@ -189,9 +195,7 @@ const Detail = ({ id }) => {
           </label>
           <br />
           <div className="tour-schedule-section">
-            <p>
-              {location.description}
-            </p>
+            <p>{location.description}</p>
             {/* <p>
               [2]
               ユニークなハノイ料理を提供する人気レストランでランチをお楽しみください。
