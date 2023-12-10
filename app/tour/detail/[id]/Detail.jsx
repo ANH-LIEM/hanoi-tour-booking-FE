@@ -243,7 +243,7 @@ const Detail = ({ id }) => {
           <div className="tour-info-section">
             <ul>
               <li>
-                <b>数料</b> {tour.price}
+                <b>料金</b> {tour.price}
               </li>
               <li>
                 <b>人数</b> {tour.maxCapacity}
