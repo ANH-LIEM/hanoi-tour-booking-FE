@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "chat": "node chat-server.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -15,7 +16,9 @@
     "next": "^14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-select": "^5.8.0"
+    "react-select": "^5.8.0",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
