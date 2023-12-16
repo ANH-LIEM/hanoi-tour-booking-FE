@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar'
 import CreateForm from './CreateForm'
 import Cookies from 'js-cookie';
-
+import Footer from '../../components/Footer';
 
 
 const CreateTour = () => {
@@ -41,6 +41,7 @@ const CreateTour = () => {
     <>
       <Navbar />
       <CreateForm submitForm={handleSubmitForm} />
+      <Footer />
     </>
   )
 }
