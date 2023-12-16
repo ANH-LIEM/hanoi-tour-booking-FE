@@ -1,47 +1,46 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image'
-import Link from 'next/link'
-import Cookies from 'js-cookie';
+"use client";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import Cookies from "js-cookie";
 
 export default function Home() {
-
   const [formValue, setFormValue] = useState({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
   const handleSubmitForm = (e, formValue) => {
     e.preventDefault();
-    console.log("Submit form", formValue)
+    console.log("Submit form", formValue);
     // after call api
-    fetch('http://localhost:8080/api/v1/auth/signin', {
-      method: 'POST',
+    fetch("http://localhost:8080/api/v1/auth/signin", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         // Add any additional headers if needed
       },
       body: JSON.stringify(formValue),
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then(data => {
-        Cookies.set('accessToken', data.token, { expires: 1 });
+      .then((data) => {
+        Cookies.set("accessToken", data.token, { expires: 1 });
         //console.log(data)
-        window.location.href = '/tour'
+        window.location.href = "/tour";
         // Handle the response data as needed
       })
-      .catch(error => {
-        console.error('Error:', error);
-        window.alert('Sign-in failed. Please check your credentials.');
+      .catch((error) => {
+        console.error("Error:", error);
+        window.alert("Sign-in failed. Please check your credentials.");
         // Handle errors
       });
-    // redirect here 
-  }
+    // redirect here
+  };
 
   return (
     <>
@@ -60,7 +59,10 @@ export default function Home() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 イーメール
               </label>
               <div className="mt-2">
@@ -69,8 +71,8 @@ export default function Home() {
                   onChange={(e) => {
                     setFormValue({
                       ...formValue,
-                      email: e.target.value
-                    })
+                      email: e.target.value,
+                    });
                   }}
                   id="email"
                   name="email"
@@ -84,11 +86,17 @@ export default function Home() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   パースワード
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
                     パスワードをお忘れですか？
                   </a>
                 </div>
@@ -99,8 +107,8 @@ export default function Home() {
                   onChange={(e) => {
                     setFormValue({
                       ...formValue,
-                      password: e.target.value
-                    })
+                      password: e.target.value,
+                    });
                   }}
                   id="password"
                   name="password"
@@ -126,13 +134,16 @@ export default function Home() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            アカウントをお持ちでない場合は{' '}
-            <a href="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            アカウントをお持ちでない場合は{" "}
+            <a
+              href="/signup"
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            >
               サインアップ
             </a>
           </p>
         </div>
       </div>
     </>
-  )
+  );
 }
