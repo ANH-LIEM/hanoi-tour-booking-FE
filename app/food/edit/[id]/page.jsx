@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Navbar from '../../Navbar';
 import EditForm from './EditForm';
 import Cookies from 'js-cookie';
+import Footer from '../../../components/Footer';
 
 const TourEdit = () => {
   //const token = Cookies.get('accessToken');
@@ -64,6 +65,7 @@ const TourEdit = () => {
     <>
       <Navbar />
       <EditForm submitForm={handleSubmitForm} deleteItem={deleteItem}/>
+      <Footer />
     </>
   )
 }

@@ -7,7 +7,7 @@ import PriceInput from "./PriceInput";
 import Tours from "./Tours";
 import Button from "./Button";
 import Link from "next/link";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import Cookies from "js-cookie";
 import ChatComponent from "../components/Chat";
 import ChatButton from "../components/ChatButton";

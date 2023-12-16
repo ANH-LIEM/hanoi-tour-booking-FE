@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from '../Navbar'
 import CreateForm from './CreateForm'
 import Cookies from 'js-cookie';
+import Footer from '../../components/Footer';
 
 const CreateLocation = () => {
 
@@ -37,6 +38,7 @@ const CreateLocation = () => {
     <>
       <Navbar />
       <CreateForm submitForm={handleSubmitForm} />
+      <Footer />
     </>
   )
 }

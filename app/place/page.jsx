@@ -7,7 +7,7 @@ import OptionBox from "./OptionBox";
 import Tours from "./Tours";
 import Button from "./Button";
 import Link from "next/link";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import Cookies from "js-cookie";
 import ChatButton from "../components/ChatButton";
 import ChatComponent from "../components/Chat";

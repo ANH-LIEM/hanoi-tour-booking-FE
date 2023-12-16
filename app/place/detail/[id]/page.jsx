@@ -3,6 +3,7 @@ import Navbar from '../../Navbar';
 import Detail from './Detail'
 import EditButton from './EditButton';
 import Link from 'next/link';
+import Footer from '../../../components/Footer';
 
 const PlaceDetail = ({params}) => {
   return (
@@ -10,6 +11,7 @@ const PlaceDetail = ({params}) => {
       <Navbar />
       <Detail id={params.id}/>
       <Link href={`/place/edit/${params.id}`}><EditButton /></Link>
+      <Footer />
     </>
   )
 }
