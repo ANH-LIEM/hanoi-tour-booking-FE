@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import React from "react";
-import React from 'react';
 import Navbar from '../../Navbar';
 import Detail from './Detail'
 import EditButton from './EditButton';
