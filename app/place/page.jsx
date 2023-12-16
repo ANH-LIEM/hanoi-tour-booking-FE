@@ -10,14 +10,13 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Cookies from "js-cookie";
 import ChatButton from "../components/ChatButton";
-import ChatComponent from "../components/Chat";
+import ChatComponent from "../components/ChatBox";
 
 export default function Home() {
   //call server get data
   //save data to state
 
   const [places, setPlaces] = useState([]);
-  const [showChat, setShowChat] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -62,16 +61,6 @@ export default function Home() {
           <Tours places={places} />
         </div>
       </div>
-
-      <div>
-        <ChatButton
-          onClick={() => {
-            setShowChat(!showChat);
-          }}
-        />
-        {showChat && <ChatComponent />}
-      </div>
-
       <Footer />
     </>
   );
