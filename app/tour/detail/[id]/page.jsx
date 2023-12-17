@@ -8,6 +8,7 @@ import Link from "next/link";
 import ChatButton from "@/app/components/ChatButton";
 import ChatBoxComponent from "@/app/components/ChatBox";
 import Cookies from "js-cookie";
+import Footer from "@/app/components/Footer";
 
 const TourDetail = ({ params }) => {
   const [showChat, setShowChat] = useState(false);
@@ -75,7 +76,7 @@ const TourDetail = ({ params }) => {
         />
         {showChat && <ChatBoxComponent chatMode={chatMode} />}
       </div>
-
+      <Footer />
     </>
   );
 };
