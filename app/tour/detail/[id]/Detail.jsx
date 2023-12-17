@@ -4,6 +4,9 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 
 const Detail = ({ id }) => {
+  const [registered, setRegistered] = useState(false)
+
+  
   const fetchDataTour = async () => {
     try {
       const token = Cookies.get("accessToken");
@@ -66,9 +69,10 @@ const Detail = ({ id }) => {
       setIsBook(jsonData);
       //console.log(jsonData)
       if (jsonData == true) {
-        window.alert("予約しました。")
+        setRegistered(true)
       } else {
         contract(e)
+        //window.location.href = `http://localhost:3000/tour/payment/${id}`
       }
 
       //console.log(jsonData)
@@ -116,7 +120,12 @@ const Detail = ({ id }) => {
       body: JSON.stringify({
         "tourId": `${id}`,
       }),
-    }).then(() => peopleOnTour());
+
+      
+    }).then(() => {
+      setRegistered(true);
+      peopleOnTour();
+    });
 
 
 
@@ -169,11 +178,11 @@ const Detail = ({ id }) => {
 
   const comments = [
     {
-      user: "フェイカー",
-      comment: "LPLスレイヤー",
+      user: "ハリー・マクギー",
+      comment: "このツアーは素晴らしいです",
       time: "2023-11-22 12:30:00",
       avatar:
-        "https://upload.wikimedia.org/wikipedia/commons/1/1a/Faker_2020_interview.jpg",
+        "https://cdn.tuoitre.vn/thumb_w/480/471584752817336320/2023/12/7/190ec53b-bcaa-4a99-9b9f-4db695901c89-17019224659581173761427.jpg",
     },
     {
       user: "クリスティアーノ・ロナウド",
@@ -242,47 +251,52 @@ const Detail = ({ id }) => {
           <br />
           <div className="tour-info-section">
             <ul>
-              <li>
-                <b>料金</b> {tour.price}
+              <li className='mb-2'>
+                <b className='mr-48'>料金</b> {tour.price}
               </li>
-              <li>
-                <b>人数</b> {tour.maxCapacity}
+              <li className='mb-2'>
+                <b className='mr-48'>人数</b> {tour.maxCapacity}
               </li>
-              <li>
-                <b>時間</b> {tour.due}
+              <li className='mb-2'>
+                <b className='mr-48'>時間</b> {tour.due}
               </li>
-              <li>
-                <b>場所</b> {tourInfo.location}
+              {/* <li className='mb-2'>
+                <b className='mr-48'>場所</b> {tourInfo.location}
+              </li> */}
+              <li className='mb-2'>
+                <b className='mr-48'>状態</b> {tour.status}
               </li>
-              <li>
-                <b>状態</b> {tour.status}
-              </li>
-              <li>
+              <li className='mb-2'>
                 <ul>
-                  <b>場所</b>
+                  <b >場所</b>
                   {locations.map((location) => (
                     <Link
                       className="text-blue-500"
                       key={location.id}
                       href={`/place/detail//${location.id}`}
                     >
-                      <li>{location.name}</li>
+                      <li className='ml-56 mb-1'>{location.name}</li>
                     </Link>
                   ))}
                 </ul>
               </li>
-              <li>
-                <b>注文する人数</b> {people}
+              <li className='mb-2'>
+                <b className='mr-32'>注文する人数</b> {people}
               </li>
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
-              <button onClick={(e) => {
-                contractState(e);
-              }}>
-                <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
-                  <b>予約</b>
-                </div>
-              </button>
+              {
+                registered ? 
+                  <div> 予約した。 </div>
+                  : 
+                  <button onClick={(e) => {
+                    contractState(e);
+                  }}>
+                    <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
+                      <b>予約</b>
+                    </div>
+                  </button>
+              }
             </div>
           </div>
         </div>
