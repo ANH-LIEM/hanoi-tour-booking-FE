@@ -53,8 +53,7 @@ const Footer = () => {
                             </div>
 
                             <p className="mt-4 max-w-xs text-gray-500">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non cupiditate quae nam
-                                molestias.
+                                ベトナムで最も魅力的なツアーを体験してください。
                             </p>
 
                             <ul className="mt-8 flex gap-6">
@@ -155,85 +154,95 @@ const Footer = () => {
 
                         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
                             <div>
-                                <p className="font-medium text-gray-900">Services</p>
+                                <p className="font-medium text-gray-900">サービス</p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
+
+
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            会社概要 </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Company Review </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> アカウントのレビュー </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> 人事コンサルティング </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> SEOの最適化 </a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div>
-                                <p className="font-medium text-gray-900">Company</p>
+                                <p className="font-medium text-gray-900">会社</p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> About </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> 約 </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            チームの紹介 </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            アカウントのレビュー </a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div>
-                                <p className="font-medium text-gray-900">Helpful Links</p>
+                                <p className="font-medium text-gray-900">
+                                    便利なリンク</p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Contact </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            接触 </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> FAQs </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            よくある質問 </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Live Chat </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            ライブチャット </a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div>
-                                <p className="font-medium text-gray-900">Legal</p>
+                                <p className="font-medium text-gray-900">
+                                    法律上の</p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Accessibility </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            アクセシビリティ </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Returns Policy </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            返品ポリシー </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Refund Policy </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            代金返却方針 </a>
                                     </li>
 
                                     <li>
-                                        <a href="#" className="text-gray-700 transition hover:opacity-75"> Hiring Statistics </a>
+                                        <a href="#" className="text-gray-700 transition hover:opacity-75">
+                                            雇用統計 </a>
                                     </li>
                                 </ul>
                             </div>
