@@ -97,7 +97,7 @@ export default function Example() {
                             href="/payment"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Payment
+                            支払い
                           </a>
                         )}
                       </Menu.Item>
@@ -107,7 +107,7 @@ export default function Example() {
                             href="/"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sign out
+                            サインアウト
                           </a>
                         )}
                       </Menu.Item>
