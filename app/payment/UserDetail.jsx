@@ -8,31 +8,66 @@ const UserDetail = () => {
   const { user } = useContext(UserContext);
 
   //console.log(user)
-  const fetchDataTour = async () => {
+  const fetchDataTour = async (item) => {
     try {
       const token = Cookies.get("accessToken");
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-      const response = await fetch(`http://localhost:8080/tour/${id}`, {
-        method: "GET",
-        headers,
-      });
-      const jsonData = await response.json();
-      console.log(jsonData);
-      //console.log(transformedLocations)
-      setTour(jsonData);
+
+      const fetchedData = [];
+
+      for (const i of item) {
+        try {
+          const response = await fetch(`http://localhost:8080/tour/${i}`, {
+            method: "GET",
+            headers,
+          });
+          const jsonData = await response.json();
+          fetchedData.push(jsonData);
+        } catch (error) {
+          console.error("Error fetching data for item:", i, error);
+        }
+      }
+
+      // After all requests are done, update the state once
+      setTour([...tour, ...fetchedData]);
+
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+
+    tour.forEach((t) => {
+      totalPrice += t.price;
+    });
+
+    return totalPrice;
+  };
+
+
   const [tour, setTour] = useState([]);
+  const totalPrice = 0
 
   useEffect(() => {
-    fetchDataTour();
-  }, []);
+    let item = localStorage.getItem('a')
+    if (item === null) return
+
+    item = item.split(',')
+    // for(let i=0; i<item.length; i++){
+    fetchDataTour(item)
+    // }
+  }, [])
+
+
+  // const item = localStorage.getItem('a')
+
+  // fetchDataTour(item)
 
 
   return (
@@ -48,9 +83,12 @@ const UserDetail = () => {
             <li className='mb-2'>
               <b className='mr-6'>人数</b> {user.email}
             </li>
+
             <li className='mb-2'>
               <b className='mr-6'>時間</b> {user.phone}
             </li>
+
+
 
             {/* <li className='mb-2'>
                             <b className='mr-6'>ツアー名</b> {tour.name}
@@ -61,10 +99,11 @@ const UserDetail = () => {
           </ul>
 
           <ul className='mt-6'>
-            {[...Array(3)].map((_, index) => (
-              <li key={index}>asd</li>
+            {tour.map((t, index) => (
+              <li key={index}> <b>
+                ツアー名: </b> {t.name} <br /> <b>料金:</b>  {t.price}  <br /><br /> </li>
             ))}
-
+            <li><b>合計:</b> {calculateTotalPrice()}</li>
           </ul>
 
         </div>
@@ -75,3 +114,4 @@ const UserDetail = () => {
 }
 
 export default UserDetail
+

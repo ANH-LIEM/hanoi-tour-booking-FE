@@ -6,7 +6,7 @@ import Link from "next/link";
 const Detail = ({ id }) => {
   const [registered, setRegistered] = useState(false)
 
-  
+
   const fetchDataTour = async () => {
     try {
       const token = Cookies.get("accessToken");
@@ -121,13 +121,16 @@ const Detail = ({ id }) => {
         "tourId": `${id}`,
       }),
 
-      
+
     }).then(() => {
+      if (localStorage.getItem('a') !== null) {
+        localStorage.setItem('a', `${localStorage.getItem('a')},${id}`)
+      } else {
+        localStorage.setItem('a', id)
+      }
       setRegistered(true);
       peopleOnTour();
     });
-
-
 
 
     // redirect here
@@ -286,9 +289,9 @@ const Detail = ({ id }) => {
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
               {
-                registered ? 
+                registered ?
                   <div> 予約した。 </div>
-                  : 
+                  :
                   <button onClick={(e) => {
                     contractState(e);
                   }}>
