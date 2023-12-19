@@ -1,59 +1,15 @@
-// Tours.jsx
-import React, { useState } from 'react';
-import RatingInput from './RatingInput';
-import OptionBox from "./OptionBox";
-import Search from './Search';
-import Section from './Section';
+import React from 'react';
+import Section from './Section'
 
-function Tours({ tours }) {
-    const [selectedRating, setSelectedRating] = useState('全て');
-    const [searchText, setSearchText] = useState('');
+function Tours(props) {
 
-    const handleRatingChange = (range) => {
-        setSelectedRating(range);
-    };
-
-    const handleSearch = (text) => {
-        setSearchText(text);
-    };
-
-    const filterTours = (tour) => {
-        // Filter by rating
-        if (selectedRating !== '全て') {
-            const [min, max] = selectedRating.split(' - ').map(Number);
-            const tourRating = Number(tour.rating);
-            if (tourRating < min || (max !== undefined && tourRating > max)) {
-                return false;
-            }
-        }
-
-        // Filter by search text
-        if (searchText) {
-            const tourTitle = tour.name.toLowerCase();
-            if (!tourTitle.includes(searchText.toLowerCase())) {
-                return false;
-            }
-        }
-
-        return true;
-    };
-
-    const filteredTours = tours.filter(filterTours);
-
+    //demo
+    //const demo = [{title: 'Ho Tay', desc: 'xyz', url: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/H%E1%BB%93_T%C3%A2y_ho%C3%A0ng_h%C3%B4n_-_NKS.jpg'}, {title: 'Ho Guom', desc: 'xyz', url: 'https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg'}, {title: 'Lang Bac', desc: 'xyz', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/L%C4%83ng_B%C3%A1c_-_NKS.jpg/1200px-L%C4%83ng_B%C3%A1c_-_NKS.jpg'}, {title: 'Van Mieu', desc: 'xyz', url: 'https://static.vinwonders.com/production/van-mieu-quoc-tu-giam-1.jpg'}, {title: 'Hoang Thanh Thang Long', desc: 'xyz', url: 'https://ik.imagekit.io/tvlk/blog/2022/03/hoang-thanh-thang-long-1.jpg'}, {title: 'Bao Tang Ha Noi', desc: 'xyz', url: 'https://static.vinwonders.com/production/bao-tang-ha-noi-01.jpg'}]
     return (
-        <div id="main" className="flex">
-            <div className="absolute  left-1/2 transform -translate-x-1/2 -translate-y-10 w-4/6">
-                <Search onSearch={handleSearch} />
-            </div>
-            <div id="left" className="w-1/5">
-                <RatingInput onPriceChange={handleRatingChange} />
-                <OptionBox />
-            </div>
-            <div id="right" className="w-4/5">
-                {filteredTours.map((item, index) => (
-                    <Section key={index} title={item.name} desc={item.description} url={item.url} id={item.id} rating={item.rating} />
-                ))}
-            </div>
+        <div>
+            {props.places.map((item, index) => (
+                <Section key={index} title={item.name} desc={item.description} url={item.location} id={item.id}/>
+            ))}
         </div>
     );
 }
