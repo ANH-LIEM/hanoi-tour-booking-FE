@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Navbar from "./Navbar";
 import Banner from "./Banner";
-import OptionBox from "./OptionBox";
 import Tours from "./Tours";
 import Button from "./Button";
 import Link from "next/link";
@@ -16,7 +15,7 @@ export default function Home() {
   //call server get data
   //save data to state
 
-  const [places, setPlaces] = useState([]);
+  const [tours, setTours] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -33,9 +32,9 @@ export default function Home() {
       const jsonData = await response.json();
       console.log(jsonData);
       if (jsonData == null) {
-        setPlaces([]);
+        setTours([]);
       }
-      setPlaces(jsonData);
+      setTours(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -54,11 +53,8 @@ export default function Home() {
       </Link>
 
       <div id="main" className="flex">
-        <div id="left" className="w-1/5">
-          <OptionBox />
-        </div>
         <div id="right" className="w-4/5">
-          <Tours places={places} />
+          <Tours tours={tours} />
         </div>
       </div>
       <Footer />

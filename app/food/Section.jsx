@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function Section(props) {
 
-    const {id,title,desc,url} = props
+    const { id, title, desc, url, price, rating } = props
 
     return (
         <>
@@ -16,7 +16,7 @@ function Section(props) {
                                     alt="Party"
                                     src={url}
                                     className="absolute inset-0 h-full w-full object-cover object-center"
-                                />                           
+                                />
                             </div>
                             <div className="py-2 text-gray-800">
                                 <h2 className="text-lg font-bold sm:text-xl">{title}</h2>
