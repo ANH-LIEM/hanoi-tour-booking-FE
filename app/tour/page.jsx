@@ -51,7 +51,7 @@ export default function Home() {
       </Link>
 
       <div id="main" className="flex">
-        <div id="right" className="w-4/5">
+        <div id="center" className="w-full">
           <Tours tours={tours} />
         </div>
       </div>
