@@ -1,33 +1,33 @@
 'use client';
 import React, { useState } from 'react';
 
-const PriceInput = ({ onPriceChange }) => {
+const RatingInput = ({ onRatingChange }) => {
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedRange, setSelectedRange] = useState('全て');
-  const priceRanges = ['全て', '0 - 100', '100 - 200', '200 - 300', '300 - 400', '400以上'];
+  const [selectedRating, setSelectedRating] = useState('全て');
+  const ratingValues = ['全て', '0 - 1', '1 - 2', '2 - 3', '3 - 4', '4 - 5'];
 
   const handleFilterClick = () => {
     setShowOptions(!showOptions);
   };
 
-  const handleOptionClick = (range) => {
-    setSelectedRange(range);
+  const handleOptionClick = (rating) => {
+    setSelectedRating(rating);
     setShowOptions(false);
-    onPriceChange(range);
+    onRatingChange(rating);
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md text-center inline-block ml-5 mt-20 border border-gray-300 relative">
-      <h1 className="text-2xl font-semibold mb-4">価格帯</h1>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md float-left inline-block ml-5 mt-20 border border-gray-300 relative">
+      <h1 className="text-2xl font-semibold mb-4">評価</h1>
       <div className="flex items-center relative">
         <input
           type="text"
-          id="price"
-          name="price"
-          value={selectedRange}
+          id="rating"
+          name="rating"
+          value={selectedRating}
           readOnly
           className="mt-1 p-2 w-full border rounded-md cursor-pointer"
-          placeholder="Select a range"
+          placeholder="Select a rating"
         />
         <button
           type="button"
@@ -46,13 +46,13 @@ const PriceInput = ({ onPriceChange }) => {
         </button>
         {showOptions && (
           <div className="absolute mt-12 bg-white border rounded-md shadow-md w-full">
-            {priceRanges.map((range) => (
+            {ratingValues.map((rating) => (
               <div
-                key={range}
-                onClick={() => handleOptionClick(range)}
+                key={rating}
+                onClick={() => handleOptionClick(rating)}
                 className="block p-2 text-gray-800 hover:bg-gray-200 w-full text-left cursor-pointer"
               >
-                {range}
+                {rating}
               </div>
             ))}
           </div>
@@ -62,4 +62,4 @@ const PriceInput = ({ onPriceChange }) => {
   );
 };
 
-export default PriceInput;
+export default RatingInput;
