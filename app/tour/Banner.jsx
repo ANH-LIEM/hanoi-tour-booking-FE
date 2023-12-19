@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './Search';
 
 export default function Banner() {
     return (
@@ -9,7 +10,11 @@ export default function Banner() {
                     alt="Banner"
                     className="w-full h-64 object-cover"
                 />
-            </div>
+                
+                <div className="absolute  left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/6">
+                    <Search />                
+                </div>       
+            </div>           
         </>
     );
 }
