@@ -150,7 +150,7 @@ export default function CreateForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="number-of-people" className="block text-sm font-medium leading-6 text-gray-900">
-                URL
+              ユーアーレル
               </label>
               <div className="mt-2">
                 <input
@@ -209,10 +209,10 @@ export default function CreateForm(props) {
                       htmlFor="file-upload"
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
-                      <span>Upload a file</span>
+                      <span>アプロード・アー・ファイル</span>
                       <input id="file-upload" name="file-upload" type="file" className="sr-only" />
                     </label>
-                    <p className="pl-1">or drag and drop</p>
+                    <p className="pl-1">オー・ドラグ・アンド・ドロップ</p>
                   </div>
                   <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                 </div>

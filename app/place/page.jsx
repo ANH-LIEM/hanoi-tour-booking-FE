@@ -17,6 +17,30 @@ export default function Home() {
   //save data to state
 
   const [places, setPlaces] = useState([]);
+  const [role, setRole] = useState([]);
+
+  const fetchUserRole = async () => {
+    try {
+      const token = Cookies.get("accessToken");
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/user/role`, {
+        method: "GET",
+        headers,
+      });
+      const jsonData = await response.json();
+      console.log(jsonData);
+
+      setRole(jsonData)
+      // if(jsonData=="ADMIN"){
+      // }
+      //console.log(transformedLocations)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
 
   const fetchData = async () => {
     try {
@@ -43,15 +67,19 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
+    fetchUserRole();
   }, []);
 
   return (
     <>
       <Navbar />
       <Banner />
+
+      {role === "ADMIN" && 
       <Link href="/place/create">
         <Button />
       </Link>
+      }
 
       <div id="main" className="flex">
         <div id="left" className="w-1/5">

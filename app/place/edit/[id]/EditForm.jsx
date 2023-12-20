@@ -147,7 +147,7 @@ export default function EditForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="url" className="block text-sm font-medium leading-6 text-gray-900">
-                url
+              ユーアーレル
               </label>
               <div className="mt-2">
                 <input
