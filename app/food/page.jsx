@@ -53,15 +53,11 @@ export default function Home() {
       </Link>
 
       <div id="main" className="flex">
-
-        <div id="center" className="w-full">
-
         <div id="left" className="w-1/5">
           <PriceInput />
           <OptionBox />
         </div>
         <div id="right" className="w-4/5">
-
           <Tours tours={tours} />
         </div>
       </div>
