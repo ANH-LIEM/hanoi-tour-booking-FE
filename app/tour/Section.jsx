@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function Section(props) {
 
-    const {id,title,desc,url,price} = props
+    const { id, title, desc, url, price } = props
 
     return (
         <>
@@ -14,16 +14,16 @@ function Section(props) {
                             <div className="relative h-48 w-64 overflow-hidden rounded-lg">
                                 <img
                                     alt="Party"
-                                    src={url}
+                                    src={"https://upload.wikimedia.org/wikipedia/commons/4/4a/H%E1%BB%93_T%C3%A2y_ho%C3%A0ng_h%C3%B4n_-_NKS.jpg"}
                                     className="absolute inset-0 h-full w-full object-cover object-center"
-                                />                           
+                                />
                             </div>
                             <div className="py-2 text-gray-800">
                                 <h2 className="text-lg font-bold sm:text-xl">{title}</h2>
                                 <p className="mt-1 text-gray-600 line-clamp-2 h-16 overflow-hidden" >
                                     {desc}
                                 </p>
-                                
+
                             </div>
                         </Link>
                     </div>
