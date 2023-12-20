@@ -4,8 +4,7 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 
 const Detail = ({ id }) => {
-  const [registered, setRegistered] = useState(false)
-
+  const [registered, setRegistered] = useState(false);
 
   const fetchDataTour = async () => {
     try {
@@ -19,8 +18,6 @@ const Detail = ({ id }) => {
         headers,
       });
       const jsonData = await response.json();
-      console.log(jsonData);
-      //console.log(transformedLocations)
       setTour(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -40,8 +37,6 @@ const Detail = ({ id }) => {
       });
       const jsonData = await response.json();
       setPeople(jsonData);
-      //console.log(jsonData)
-      //console.log(transformedLocations)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -50,36 +45,18 @@ const Detail = ({ id }) => {
   const [tour, setTour] = useState([]);
   const [people, setPeople] = useState([]);
 
-  const [isBook, setIsBook] = useState(false);
-
-  const contractState = async (e) => {
-    try {
-      e.preventDefault();
-      const token = Cookies.get('accessToken');
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await fetch(`http://localhost:8080/tour/book/${id}`, {
-        method: 'GET',
-        headers,
-      });
-
-      const jsonData = await response.json();
-      setIsBook(jsonData);
-      //console.log(jsonData)
-      if (jsonData == true) {
-        setRegistered(true)
-      } else {
-        contract(e)
-        //window.location.href = `http://localhost:3000/tour/payment/${id}`
-      }
-
-      //console.log(jsonData)
-      //console.log(transformedLocations)      
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+  const fetchContractState = async () => {
+    const token = Cookies.get("accessToken");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await fetch(`http://localhost:8080/tour/book/${id}`, {
+      method: "GET",
+      headers,
+    });
+    const jsonData = await response.json();
+    setRegistered(jsonData);
   };
 
   const fetchDataLocation = async () => {
@@ -97,8 +74,6 @@ const Detail = ({ id }) => {
         }
       );
       const jsonData = await response.json();
-      console.log(jsonData);
-      //console.log(transformedLocations)
       setLocations(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -108,8 +83,6 @@ const Detail = ({ id }) => {
   const contract = async (e) => {
     const token = Cookies.get("accessToken"); // Lấy token từ cookie
     e.preventDefault();
-    //console.log("Submit form", formValue)
-    // after call api
     fetch("http://localhost:8080/contract", {
       method: "POST",
       headers: {
@@ -118,20 +91,17 @@ const Detail = ({ id }) => {
         // Add any additional headers if needed
       },
       body: JSON.stringify({
-        "tourId": `${id}`,
+        tourId: `${id}`,
       }),
-
-
     }).then(() => {
-      if (localStorage.getItem('a') !== null) {
-        localStorage.setItem('a', `${localStorage.getItem('a')},${id}`)
+      if (localStorage.getItem("a") !== null) {
+        localStorage.setItem("a", `${localStorage.getItem("a")},${id}`);
       } else {
-        localStorage.setItem('a', id)
+        localStorage.setItem("a", id);
       }
       setRegistered(true);
       peopleOnTour();
     });
-
 
     // redirect here
   };
@@ -142,6 +112,7 @@ const Detail = ({ id }) => {
     fetchDataTour();
     fetchDataLocation();
     peopleOnTour();
+    fetchContractState();
   }, []);
 
   // useEffect(() => {
@@ -226,16 +197,13 @@ const Detail = ({ id }) => {
       user: "エム・ピー・スリー",
       comment: "一ペニーの価値がある",
       time: "2023-11-22 12:30:00",
-      avatar:
-        "https://cdn.bongdaplus.vn/Assets/Media/2021/12/17/26/Mbappe.jpg",
-    }
+      avatar: "https://cdn.bongdaplus.vn/Assets/Media/2021/12/17/26/Mbappe.jpg",
+    },
   ];
 
   const handleShowMore = () => {
     setShowMore(true);
   };
-
-
 
   return (
     <form className="max-w-2xl mx-auto mt-4">
@@ -282,52 +250,55 @@ const Detail = ({ id }) => {
           <br />
           <div className="tour-info-section">
             <ul>
-              <li className='mb-2'>
-                <b className='mr-48'>料金</b> {tour.price}
+              <li className="mb-2">
+                <b className="mr-48">料金</b> {tour.price}
               </li>
-              <li className='mb-2'>
-                <b className='mr-48'>人数</b> {tour.max_capacity}
+              <li className="mb-2">
+                <b className="mr-48">人数</b> {tour.max_capacity}
               </li>
-              <li className='mb-2'>
-                <b className='mr-48'>時間</b> {tour.due}
+              <li className="mb-2">
+                <b className="mr-48">時間</b> {tour.due}
               </li>
               {/* <li className='mb-2'>
                 <b className='mr-48'>場所</b> {tourInfo.location}
               </li> */}
-              <li className='mb-2'>
-                <b className='mr-48'>状態</b> {tour.status}
+              <li className="mb-2">
+                <b className="mr-48">状態</b> {tour.status}
               </li>
-              <li className='mb-2'>
+              <li className="mb-2">
                 <ul>
-                  <b >場所</b>
+                  <b>場所</b>
                   {locations.map((location) => (
                     <Link
                       className="text-blue-500"
                       key={location.id}
                       href={`/place/detail//${location.id}`}
                     >
-                      <li className='ml-56 mb-1'>{location.name}</li>
+                      <li className="ml-56 mb-1">{location.name}</li>
                     </Link>
                   ))}
                 </ul>
               </li>
-              <li className='mb-2'>
-                <b className='mr-32'>注文する人数</b> {people}
+              <li className="mb-2">
+                <b className="mr-32">注文する人数</b> {people}
               </li>
             </ul>
             <div className="flex items-center justify-center p-2 rounded-md mt-4">
-              {
-                registered ?
-                  <div> 予約した。 </div>
-                  :
-                  <button onClick={(e) => {
-                    contractState(e);
-                  }}>
-                    <div className="p-2 bg-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
-                      <b>予約</b>
-                    </div>
-                  </button>
-              }
+              {registered ? (
+                <div className="p-2 bg-orange-400 text-white rounded-md shadow-md inline-block mt-2 border border-gray-300">
+                  予約した
+                </div>
+              ) : (
+                <button
+                  onClick={(e) => {
+                    contract(e);
+                  }}
+                >
+                  <div className="p-2 text-white bg-blue-500 hover:bg-blue-400 transition rounded-md shadow-md inline-block mt-2 border border-gray-300">
+                    <b>予約</b>
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -394,6 +365,6 @@ const Detail = ({ id }) => {
       </div>
     </form>
   );
-}
+};
 
 export default Detail;
