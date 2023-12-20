@@ -91,14 +91,14 @@ const Detail = ({ id }) => {
   const comments = [
     {
       user: "フェイカー",
-      comment: "LPLスレイヤー",
+      comment: "美しい景色",
       time: "2023-11-22 12:30:00",
       avatar:
         "https://upload.wikimedia.org/wikipedia/commons/1/1a/Faker_2020_interview.jpg",
     },
     {
       user: "クリスティアーノ・ロナウド",
-      comment: "41歳は人生の頂点",
+      comment: "素晴らしい",
       time: "2023-11-22 13:45:00",
       avatar:
         "https://upload.wikimedia.org/wikipedia/commons/6/64/Cristiano_Ronaldo_2018_%28cropped%29.jpg",
@@ -164,11 +164,11 @@ const Detail = ({ id }) => {
               <li>
                 <b className="mr-10">観光地</b> {location.name}
               </li>
-              <li>
+              {/* <li>
                 <b className="mr-5">Location</b> {location.location}
-              </li>
+              </li> */}
               <li>
-                <b className="mr-9">Rating</b> {location.rating}
+                <b className="mr-9">レーティング</b> {location.rating}
               </li>
             </ul>
             <ul>

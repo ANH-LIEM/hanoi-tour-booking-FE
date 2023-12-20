@@ -87,7 +87,7 @@ const Detail = ({ id }) => {
   const comments = [
     {
       user: "フェイカー",
-      comment: "LPLスレイヤー",
+      comment: "食べ物はとてもおいしいです",
       time: "2023-11-22 12:30:00",
       avatar:
         "https://upload.wikimedia.org/wikipedia/commons/1/1a/Faker_2020_interview.jpg",
@@ -101,7 +101,7 @@ const Detail = ({ id }) => {
     },
     {
       user: "ライオネル・メッシ",
-      comment: "GOAT!!!",
+      comment: "これは絶対また食べます",
       time: "2023-11-22 14:20:00",
       avatar:
         "https://upload.wikimedia.org/wikipedia/commons/b/b8/Messi_vs_Nigeria_2018.jpg",

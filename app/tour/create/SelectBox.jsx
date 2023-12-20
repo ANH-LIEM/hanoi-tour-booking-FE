@@ -47,7 +47,7 @@ export default function MultiSelect({ setFormLocations }) {
     return (
         <div className="container mx-auto  w-96">
             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1.5">
-                Location Select
+            ローケーション・セレクト
             </label>
             <Select
                 isMulti

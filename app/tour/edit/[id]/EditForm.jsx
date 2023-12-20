@@ -41,6 +41,7 @@ export default function EditForm(props) {
     places: '',
     max_capacity: '',
     description: '',
+    status:'',
     url:'',
     image1: null,
   })
@@ -164,6 +165,28 @@ export default function EditForm(props) {
               </div>
             </div>
 
+            <div className="col-span-full">
+              <label htmlFor="number-of-people" className="block text-sm font-medium leading-6 text-gray-900">
+              ステータス
+              </label>
+              <div className="mt-2">
+                <input
+                  value={formValue.status}
+                  onChange={(e) => {
+                    setFormValue({
+                      ...formValue,
+                      status: e.target.value
+                    })
+                  }}
+                  type="text"
+                  name="number-of-people"
+                  id="number-of-people"
+                  autoComplete="number-of-people"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
 
             <div className="col-span-full">
               <label htmlFor="detail" className="block text-sm font-medium leading-6 text-gray-900">
@@ -190,7 +213,7 @@ export default function EditForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="url" className="block text-sm font-medium leading-6 text-gray-900">
-                url
+              ユーアーレル
               </label>
               <div className="mt-2">
                 <input

@@ -28,7 +28,7 @@ const OptionBox = () => {
           onChange={() => handleCheckboxChange('option1')}
           className="mr-2"
         />
-        <label htmlFor="option1" className="select-none">Option 1</label>
+        <label htmlFor="option1" className="select-none">オプション 1</label>
       </div>
 
       <div className="flex items-center mb-2">
@@ -39,7 +39,7 @@ const OptionBox = () => {
           onChange={() => handleCheckboxChange('option2')}
           className="mr-2"
         />
-        <label htmlFor="option2" className="select-none">Option 2</label>
+        <label htmlFor="option2" className="select-none">オプション 2</label>
       </div>
 
       <div className="flex items-center mb-2">
@@ -50,7 +50,7 @@ const OptionBox = () => {
           onChange={() => handleCheckboxChange('option3')}
           className="mr-2"
         />
-        <label htmlFor="option3" className="select-none">Option 3</label>
+        <label htmlFor="option3" className="select-none">オプション 3</label>
       </div>
 
       <div className="flex items-center mb-2">
@@ -61,7 +61,7 @@ const OptionBox = () => {
           onChange={() => handleCheckboxChange('option4')}
           className="mr-2"
         />
-        <label htmlFor="option4" className="select-none">Option 4</label>
+        <label htmlFor="option4" className="select-none">オプション 4</label>
       </div>
     </div>
   );

@@ -97,7 +97,7 @@ export default function CreateForm(props) {
 
             <div className="col-span-full">
               <label htmlFor="number-of-people" className="block text-sm font-medium leading-6 text-gray-900">
-                URL
+              ユーアーレル
               </label>
               <div className="mt-2">
                 <input
