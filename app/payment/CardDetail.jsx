@@ -4,8 +4,6 @@ import Footer from '@/app/components/Footer'
 
 const CardDetail = () => {
 
-
-
     return (
         <>
             <div className='float-right w-1/2  mt-8'>
@@ -70,7 +68,7 @@ const CardDetail = () => {
                     />
                 </div>
 
-            <Button />
+            <Button/>
             </div>
             
         </>
