@@ -17,7 +17,7 @@ const OptionBox = () => {
   };
 
   return (
-    <div className="  border border-gray-300 p-4 rounded-md  float-left ml-16 mt-14">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md text-center inline-block ml-24 mt-24 border border-gray-300 relative">
       <h2 className="text-lg font-semibold mb-4">観光地タイプ</h2>
 
       <div className="flex items-center mb-2">
