@@ -36,7 +36,7 @@ export default function Example() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src="https://nhathuesaigon.vn/wp-content/uploads/2021/09/logo-du-lich-viet-nam-1.jpg"
                     alt="Your Company"
                   />
                 </div>
