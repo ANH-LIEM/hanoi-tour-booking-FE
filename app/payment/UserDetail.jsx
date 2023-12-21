@@ -101,9 +101,9 @@ const UserDetail = () => {
           <ul className='mt-6'>
             {tour.map((t, index) => (
               <li key={index}> <b>
-                ツアー名: </b> {t.name} <br /> <b>料金:</b>  {t.price}  <br /><br /> </li>
+                ツアー名: </b> {t.name} <br /> <b className='mr-4'>料金:</b>  {t.price}  <br /><br /> </li>
             ))}
-            <li><b>合計:</b> {calculateTotalPrice()}</li>
+            <li><b className='mr-6'>合計:</b> {calculateTotalPrice()}</li>
           </ul>
 
         </div>

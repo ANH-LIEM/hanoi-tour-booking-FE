@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-function Search(){
+function Search({setText}){
   // const router = useRouter()
   // const [text, setText] = useState('')
   // useEffect(() => {
@@ -14,7 +14,7 @@ function Search(){
           type="text"
           placeholder="名前、位置、…"
           className="border-none outline-none px-3 py-1 flex-grow"
-          // onChange={e => setText(e.target.value)}
+          onChange={e => setText(e.target.value)}
 
         />
         <button
