@@ -69,10 +69,12 @@ export default function Home() {
     fetchUserRole();
   }, []);
 
+  const [text, setText] = useState(''); 
+
   return (
     <>
       <Navbar />
-      <Banner />
+      <Banner setText={setText}/>
 
       {role === "ADMIN" && 
       <Link href="/tour/create">
@@ -86,7 +88,7 @@ export default function Home() {
           <OptionBox />
         </div>
         <div id="right" className="w-4/5">
-          <Tours tours={tours} />
+          <Tours tours={tours} search={text}/>
         </div>
       </div>
       <Footer />
