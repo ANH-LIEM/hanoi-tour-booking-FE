@@ -18,6 +18,7 @@ export default function Home() {
 
   const [places, setPlaces] = useState([]);
   const [role, setRole] = useState([]);
+  const [name, setName] = useState('');
 
   const fetchUserRole = async () => {
     try {
@@ -73,7 +74,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Banner />
+      <Banner setName={setName}/>
 
       {role === "ADMIN" && 
       <Link href="/place/create">
@@ -83,10 +84,10 @@ export default function Home() {
 
       <div id="main" className="flex">
         <div id="left" className="w-1/5">
-          <OptionBox />
+          {/* <OptionBox /> */}
         </div>
         <div id="right" className="w-4/5">
-          <Tours places={places} />
+          <Tours places={places} searchName={name}/>
         </div>
       </div>
       <Footer />

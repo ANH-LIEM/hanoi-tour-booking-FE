@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './Search';
 
-export default function Banner() {
+export default function Banner({setName}) {
     return (
         <>
             <div className=" relative banner mb-10">
@@ -12,7 +12,7 @@ export default function Banner() {
                 />
                 
                 <div className="absolute  left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/6">
-                    <Search />                
+                    <Search setName={setName}/>                
                 </div>       
             </div>           
         </>
