@@ -1,12 +1,13 @@
 import React from 'react';
 
-function Search(){
+function Search({setName}){
     return (
       <div className="flex items-center bg-white shadow-md p-2 rounded border border-gray-500 w-full">
         <input
           type="text"
           placeholder="名前、値段, .."
           className="border-none outline-none px-3 py-1 flex-grow"
+          onChange={e => setName(e.target.value)}
         />
         <button
           type="button"

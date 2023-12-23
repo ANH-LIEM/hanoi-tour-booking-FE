@@ -15,6 +15,8 @@ import ChatComponent from "../components/ChatBox";
 export default function Home() {
   const [tours, setTours] = useState([]);
   const [role, setRole] = useState([]);
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
 
   const fetchUserRole = async () => {
     try {
@@ -72,7 +74,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Banner />
+      <Banner setName={setName}/>
 
       {role === "ADMIN" && 
       <Link href="/food/create">
@@ -82,11 +84,11 @@ export default function Home() {
 
       <div id="main" className="flex">
         <div id="left" className="w-1/5">
-          <PriceInput />
-          <OptionBox />
+          <PriceInput setPrice={setPrice}/>
+          {/* <OptionBox /> */}
         </div>
         <div id="right" className="w-4/5">
-          <Tours tours={tours} />
+          <Tours tours={tours} searchName={name} searchPrice={price}/>
         </div>
       </div>
       <Footer />
