@@ -2,9 +2,67 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import Rating from "./Rating"
 
 const Detail = ({ id }) => {
   const [registered, setRegistered] = useState(false);
+  const [comments, setComments] = useState([])
+  const [content, setContent] = useState('')
+
+  // comment api
+
+  const fetchDataComment = async () => {
+    try {
+      const token = Cookies.get("accessToken");
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await fetch(`http://localhost:8080/tour/comment/${id}`, {
+        method: "GET",
+        headers,
+      });
+      const jsonData = await response.json();
+      setComments(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleSubmitForm = (e) => {
+    const token = Cookies.get('accessToken'); // Lấy token từ cookie
+    e.preventDefault();
+    //console.log("Submit form", formValue)
+    // after call api
+
+    let formValue = {
+      'content': content,
+      'tourId': id
+    }
+
+    fetch('http://localhost:8080/tour/comment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        // Add any additional headers if needed
+      },
+      body: JSON.stringify(formValue),
+    })
+      .then(response => response.json())
+      .then(data => {
+
+        window.location.href = `/tour/detail/${id}`
+        // Handle the response data as needed
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle errors
+      });
+    // redirect here 
+  }
+
+  // 
 
   const fetchDataTour = async () => {
     try {
@@ -113,6 +171,7 @@ const Detail = ({ id }) => {
     fetchDataLocation();
     peopleOnTour();
     fetchContractState();
+    fetchDataComment();
   }, []);
 
   // useEffect(() => {
@@ -150,7 +209,7 @@ const Detail = ({ id }) => {
     status: "利用可能",
   };
 
-  const comments = [
+  const comments1 = [
     {
       user: "オナナー",
       comment: "なんて思い出深い経験でしょう",
@@ -329,39 +388,70 @@ const Detail = ({ id }) => {
           </div>
         </div>
 
-        <div className="border border-gray-300 p-4 rounded-md mx-auto center mt-6">
-          <label
-            htmlFor="tour-comments"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            <b className="text-lg">コメント</b>
-          </label>
-          <div className="tour-comments-section">
-            {comments.map((comment, index) => (
-              <div
-                key={index}
-                className="flex items-start border-b border-gray-300 py-4"
+        {registered && (
+          <>
+            <div className="border border-gray-300 p-4 rounded-md mx-auto center mt-6">
+              <Rating />
+            </div>
+            <div className="border border-gray-300 p-4 rounded-md mx-auto center mt-6">
+              <label
+                htmlFor="tour-comments"
+                className="block text-sm font-medium leading-6 text-gray-900"
               >
-                <div className="flex-shrink-0">
+                <b className="text-lg">コメント</b>
+              </label>
+              {/* map cmt */}
+              <div className="tour-comments-section">
+                {comments.map((comment, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start border-b border-gray-300 py-4"
+                  >
+                    {/* <div className="flex-shrink-0">
                   <img
                     src={comment.avatar}
                     alt={`Avatar ${comment.user}`}
                     className="w-12 h-12 rounded-full"
                   />
+                </div> */}
+                    <div className="ml-4">
+                      <span className="font-bold text-sm ml-2">
+                        @{comment.user}
+                      </span>
+                      <span className="text-gray-500 text-sm ml-2">
+                        {comment.createdAt}
+                      </span>
+                      <p className="text-gray-800 ml-2">{comment.content}</p>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="my-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="comment">
+                    あなたのコメント:
+                  </label>
+                  <textarea
+                    className="resize-none border rounded-md w-full py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
+                    id="comment"
+                    name="comment"
+                    rows="4"
+                    placeholder="コメントを入力してください..."
+                    onChange={e => setContent(e.target.value)}
+                  ></textarea>
+                  <button
+                    className="bg-blue-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-blue-700"
+                    onClick={handleSubmitForm}
+                  >
+                    提出する
+                  </button>
                 </div>
-                <div className="ml-4">
-                  <span className="font-bold text-sm ml-2">
-                    @{comment.user}
-                  </span>
-                  <span className="text-gray-500 text-sm ml-2">
-                    {comment.time}
-                  </span>
-                  <p className="text-gray-800 ml-2">{comment.comment}</p>
-                </div>
+
               </div>
-            ))}
-          </div>
-        </div>
+
+              {/* end cmt  */}
+            </div>
+          </>
+        )}
       </div>
     </form>
   );

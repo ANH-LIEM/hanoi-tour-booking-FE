@@ -82,10 +82,7 @@ export default function Home() {
       </Link>
       }
 
-      <div id="main" className="flex">
-        <div id="left" className="w-1/5">
-          {/* <OptionBox /> */}
-        </div>
+      <div id="main" className="flex justify-center items-center">
         <div id="right" className="w-4/5">
           <Tours places={places} searchName={name}/>
         </div>
