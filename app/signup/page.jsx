@@ -27,7 +27,7 @@ const SignUp = () => {
             .then(data => {
                 //Cookies.set('accessToken', data.token, { expires: 1 });
                 //console.log(data)
-                window.location.href = '/'
+                window.location.href = '/signin'
                 // Handle the response data as needed
             })
             .catch(error => {
@@ -66,10 +66,7 @@ const SignUp = () => {
                                 </svg> */}
                             </a>
 
-                            <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
 
-                                ようこそベトナムへ🦑
-                            </h2>
 
                             <p className="mt-4 leading-relaxed text-white/90">
 
@@ -114,7 +111,7 @@ const SignUp = () => {
                             <form action="#" className="mt-8 grid grid-cols-6 gap-6">
                                 <div className="col-span-6">
                                     <label htmlFor="Fullname" className="block text-sm font-medium text-gray-700">
-                                        Full Name
+                                        フルネーム
                                     </label>
 
                                     <input
@@ -134,7 +131,7 @@ const SignUp = () => {
 
                                 <div className="col-span-6">
                                     <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
-                                        Email
+                                        メイル
                                     </label>
 
                                     <input
@@ -154,7 +151,7 @@ const SignUp = () => {
 
                                 <div className="col-span-6">
                                     <label htmlFor="Phone" className="block text-sm font-medium text-gray-700">
-                                        Phone
+                                        電話番号
                                     </label>
 
                                     <input
@@ -174,7 +171,7 @@ const SignUp = () => {
 
                                 <div className="col-span-6">
                                     <label htmlFor="Nationality" className="block text-sm font-medium text-gray-700">
-                                        Nationality
+                                        国籍
                                     </label>
 
                                     <input
@@ -198,7 +195,7 @@ const SignUp = () => {
                                         htmlFor="Password"
                                         className="block text-sm font-medium text-gray-700"
                                     >
-                                        Password
+                                        パスワード
                                     </label>
 
                                     <input
@@ -221,7 +218,7 @@ const SignUp = () => {
                                         htmlFor="PasswordConfirmation"
                                         className="block text-sm font-medium text-gray-700"
                                     >
-                                        Password Confirmation
+                                        パスワードの確認
                                     </label>
 
                                     <input
@@ -242,20 +239,19 @@ const SignUp = () => {
                                         />
 
                                         <span className="text-sm text-gray-700">
-                                            I want to receive emails about events, product updates and
-                                            company announcements.
+                                        イベント、製品の最新情報、会社のお知らせに関する電子メールの受信を希望します。
                                         </span>
                                     </label>
                                 </div>
 
                                 <div className="col-span-6">
                                     <p className="text-sm text-gray-500">
-                                        By creating an account, you agree to our
+                                    アカウントを作成すると、次のことに同意したものとみなされます
                                         <a href="#" className="text-gray-700 underline">
-                                            terms and conditions
+                                        利用規約
                                         </a>
-                                        and
-                                        <a href="#" className="text-gray-700 underline"> privacy policy</a>.
+                                        そして
+                                        <a href="#" className="text-gray-700 underline"> プライバシーポリシー</a>.
                                     </p>
                                 </div>
 
@@ -264,12 +260,12 @@ const SignUp = () => {
                                         onClick={(e) => handleSubmitForm(e, formValue)}
                                         className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                                     >
-                                        Create an account
+                                        アカウントを作成する
                                     </button>
 
                                     <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                                        Already have an account?
-                                        <a href="/" className="text-gray-700 underline"> Log in</a>.
+                                    すでにアカウントをお持ちですか？
+                                        <a href="/" className="text-gray-700 underline"> サインイン</a>.
                                     </p>
                                 </div>
                             </form>

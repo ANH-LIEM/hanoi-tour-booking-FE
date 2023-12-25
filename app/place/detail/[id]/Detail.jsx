@@ -196,53 +196,6 @@ const Detail = ({ id }) => {
           <br />
           <div className="tour-schedule-section">
             <p>{location.description}</p>
-            {/* <p>
-              [2]
-              ユニークなハノイ料理を提供する人気レストランでランチをお楽しみください。
-            </p>
-            <p>
-              [3]
-              引き続きハノイ博物館を訪問して、街の歴史と文化をより深く理解してください。
-            </p>
-            <p>
-              [4]
-              旅の終わりは、あらゆる年齢層の観光客が楽しめるゲームやエンターテイメントがたくさんあるヴィンワンダーズ
-              ハノイで終わります。
-            </p> */}
-          </div>
-        </div>
-
-        <div className="border border-gray-300 p-4 rounded-md mx-auto center mt-6">
-          <label
-            htmlFor="tour-comments"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            <b className="text-lg">コメント</b>
-          </label>
-          <div className="tour-comments-section">
-            {comments.map((comment, index) => (
-              <div
-                key={index}
-                className="flex items-start border-b border-gray-300 py-4"
-              >
-                <div className="flex-shrink-0">
-                  <img
-                    src={comment.avatar}
-                    alt={`Avatar ${comment.user}`}
-                    className="w-12 h-12 rounded-full"
-                  />
-                </div>
-                <div className="ml-4">
-                  <span className="font-bold text-sm ml-2">
-                    @{comment.user}
-                  </span>
-                  <span className="text-gray-500 text-sm ml-2">
-                    {comment.time}
-                  </span>
-                  <p className="text-gray-800 ml-2">{comment.comment}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

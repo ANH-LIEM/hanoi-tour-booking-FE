@@ -2,11 +2,15 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link';
+import Cookies from 'js-cookie';
+
+const token = Cookies.get("accessToken");
+console.log(token)
 
 const navigation = [
-  { name: 'ツアー', href: '/tour', current: false },
-  { name: '勧めのフード', href: '/food', current: true },
-  { name: '勧めの観光地', href: '/place', current: false },
+  { name: 'ツアー', href: '/tourguest', current: true },
+  
 ]
 
 function classNames(...classes) {
@@ -55,10 +59,13 @@ export default function Example() {
                         {item.name}
                       </a>
                     ))}
+
                   </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+
                 <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -101,7 +108,7 @@ export default function Example() {
                           </a>
                         )}
                       </Menu.Item>
-                      
+
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -115,6 +122,27 @@ export default function Example() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                {/* Thêm nút "Sign In" */}
+                {/* {token === undefined && (
+                  <>
+                    <Link href='/signin' >
+                      <button
+                        type="button"
+                        className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-10 ml-6"
+                      >
+                        サインイン
+                      </button>
+                    </Link>
+                  </>
+                )} */}
+                <Link href='/signin' >
+                  <button
+                    type="button"
+                    className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-10 ml-6"
+                  >
+                    サインイン
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

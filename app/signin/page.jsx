@@ -52,7 +52,7 @@ export default function Home() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            ハノイ交流
+          ベトナム交流
           </h2>
         </div>
 
