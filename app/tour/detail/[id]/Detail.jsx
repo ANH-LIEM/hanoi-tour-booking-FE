@@ -51,8 +51,9 @@ const Detail = ({ id }) => {
     })
       .then(response => response.json())
       .then(data => {
-
-        window.location.href = `/tour/detail/${id}`
+        fetchDataComment();
+        setContent('');
+        //window.location.href = `/tour/detail/${id}`
         // Handle the response data as needed
       })
       .catch(error => {
@@ -436,6 +437,7 @@ const Detail = ({ id }) => {
                     name="comment"
                     rows="4"
                     placeholder="コメントを入力してください..."
+                    value={content}
                     onChange={e => setContent(e.target.value)}
                   ></textarea>
                   <button
