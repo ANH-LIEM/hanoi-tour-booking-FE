@@ -1,6 +1,13 @@
 import React from 'react';
 
 const PriceInput = ({setPrice}) => {
+  const handleKeyDown = (e) => {
+    // Ngăn chặn sự kiện mặc định nếu ký tự là "-"
+    if (e.key === '-' || e.key === '+') {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md float-left inline-block ml-5 mt-20 border border-gray-300">
       <h1 className="text-2xl font-semibold mb-4">価格帯</h1>
@@ -11,6 +18,7 @@ const PriceInput = ({setPrice}) => {
           name="price"
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="¥ 0 ~ 1万"
+          onKeyDown={handleKeyDown}
           onChange={e => setPrice(e.target.value)}
         />
         <button

@@ -186,7 +186,7 @@ const Detail = ({ id }) => {
             htmlFor="tour-schedule"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            <b className="text-lg">詳しいスケジュール</b>
+            <b className="text-lg">詳細情報</b>
           </label>
           <br />
           <div className="tour-schedule-section">
